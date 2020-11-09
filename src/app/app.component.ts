@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { EraServiceService } from "./services/era-service.service";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'eraconverter-Web';
+
+  constructor() {}
+
+  ngOnInit() {}
+
 }

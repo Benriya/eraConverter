@@ -1,0 +1,56 @@
+<div>
+  <h2 class="widgetTitle">Rekord hozzáadása az adatbázishoz:</h2>
+</div>
+<div class="uploadRecord">
+  <div class="createRecord">
+    <div class="createRecord__name">
+    <strong>Kor neve: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="name">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__age">
+    <strong>Kor ideje: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="age">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__possessions">
+    <strong>Vagyon: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="possessions">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__income">
+    <strong>Jövedelem: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="income">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__cost">
+    <strong>Fogyasztói ár: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="cost">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__description">
+    <strong>Leírás: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="description">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__source">
+    <strong>Forrás: </strong>
+      <mat-form-field appearance="legacy">
+        <input matInput [(ngModel)]="source">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="button">
+    <button class="btn btn-primary"  ngbButtonLabel
+            (click)="postData({id: generateId(), name: name, age: age, possessions: possessions, income: income, cost: cost, description: description, source: source})">
+      Rekord feltöltése
+    </button>
+  </div>
+</div>
+

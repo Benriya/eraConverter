@@ -1,0 +1,33 @@
+.header {
+  background-color: #50acf3;
+
+  &__title {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.login {
+  z-index: 10;
+  position: absolute;
+  left: 20%;
+  top: 10%;
+
+  &__navigation {
+    border-width: 3px;
+    border-color: #000000;
+
+    &-item {
+      display: inline-block;
+      background-color: white;
+      box-shadow: 2px 2px whitesmoke;
+      border-radius: 10px;
+      padding: 5px;
+      margin-left: 5em;
+      cursor: pointer;
+    }
+  }
+}

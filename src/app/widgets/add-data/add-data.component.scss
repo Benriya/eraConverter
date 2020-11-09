@@ -1,0 +1,48 @@
+.createRecord {
+  &__name {
+    position: absolute;
+    top: 4em;
+    left: 5%;
+  }
+  &__age {
+    position: absolute;
+    top: 4em;
+    left: 30%;
+  }
+  &__possessions {
+    position: absolute;
+    top: 4em;
+    left: 55%;
+  }
+  &__income {
+    position: absolute;
+    top: 4em;
+    left: 80%;
+  }
+  &__cost {
+    position: absolute;
+    top: 9em;
+    left: 15%;
+  }
+  &__description {
+    position: absolute;
+    top: 9em;
+    left: 43%;
+  }
+  &__source {
+    position: absolute;
+    top: 9em;
+    left: 68%;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 15em;
+  left: 3em;
+}
+
+.uploadRecord {
+  display: block;
+  height: 20em;
+}

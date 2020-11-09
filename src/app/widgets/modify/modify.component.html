@@ -1,0 +1,46 @@
+<div>
+      <mat-card>
+        <mat-card-content>
+          <div class="listText">
+            <mat-card-title class="listText__piece-name">#{{eraData.id}}</mat-card-title>
+            <div class="listText__piece"><strong>Kor neve: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.name">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Kor ideje: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.age">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Vagyon: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.possessions">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Jövedelem: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.income">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Fogyasztói ár: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.cost">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Leírás: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.description">
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Leírás: </strong>
+              <mat-form-field appearance="legacy">
+                <input matInput [(ngModel)]="eraData.source">
+              </mat-form-field>
+            </div>
+          </div>
+          <div><button class="btn btn-primary" (click)="updateData()">Rekord Frissítése</button></div>
+          <div><button class="btn btn-primary" (click)="returnFrontPage()">Mégse</button></div>
+        </mat-card-content>
+      </mat-card>
+</div>
