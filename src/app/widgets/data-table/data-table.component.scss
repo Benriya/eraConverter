@@ -10,6 +10,7 @@ mat-card {
   position: absolute;
   display: inline-block;
 }
+
 .listText {
   &__icon{
 
@@ -23,4 +24,11 @@ mat-card {
       right: 1em;
     }
   }
+}
+
+i:hover {
+  cursor: pointer;
+}
+a:hover {
+  cursor: pointer;
 }

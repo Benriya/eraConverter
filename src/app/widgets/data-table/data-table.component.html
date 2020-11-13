@@ -10,17 +10,23 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div>
+  <div class="error" *ngIf="eraDatas.length === 0">
+    <h1>Nincs adat</h1>
+  </div>
+  <div *ngIf="eraDatas.length !== 0">
     <ul>
       <li class="listData" *ngFor="let dataset of eraDatas | paginate: { itemsPerPage: listRecordNumber, currentPage: page }; let i = index">
         <mat-card>
           <mat-card-content>
             <div class="listText">
-              <mat-card-title class="listText__piece-name">#{{i+1}}</mat-card-title>
-              <div class="listText__piece"><span><strong>Kor neve: </strong>{{dataset.name}}</span></div>
+              <mat-card-title class="listText__piece-name">#{{dataset.id}}</mat-card-title>
+              <div class="listText__piece">
+                <span><strong>{{dataset.nameType}}: </strong>{{dataset.name}}</span>
+              </div>
               <div class="listText__piece"><span><strong>Kor ideje: </strong>{{dataset.age}}</span></div>
               <div class="listText__piece"><span><strong>Vagyon: </strong>{{dataset.possessions}}</span></div>
-              <div class="listText__piece"><span><strong>Jövedelem: </strong>{{dataset.income}}</span></div>
+              <div class="listText__piece"><span><strong>Jövedelem: </strong>{{dataset.income}}
+                <span *ngIf="dataset.singleTime !== ''">({{dataset.singleTime}})</span></span></div>
               <div class="listText__piece"><span><strong>Fogyasztói ár: </strong>{{dataset.cost}}</span></div>
               <div class="listText__piece"><span><strong>Leírás: </strong>{{dataset.description}}</span></div>
               <div class="listText__piece"><span><strong>Forrás: </strong>{{dataset.source}}</span></div>

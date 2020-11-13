@@ -1,48 +1,69 @@
 .createRecord {
   &__name {
     position: absolute;
-    top: 4em;
-    left: 5%;
+    top: 5em;
+    left: 2%;
+    &-type {
+      width: 12em;
+    }
   }
   &__age {
     position: absolute;
-    top: 4em;
+    top: 5em;
     left: 30%;
   }
   &__possessions {
     position: absolute;
-    top: 4em;
+    top: 5em;
     left: 55%;
   }
   &__income {
     position: absolute;
-    top: 4em;
-    left: 80%;
+    top: 13em;
+    left: 2%;
+    &-singleTime {
+      width: 8em;
+    }
   }
   &__cost {
     position: absolute;
-    top: 9em;
-    left: 15%;
+    top: 5em;
+    left: 80%;
   }
   &__description {
     position: absolute;
-    top: 9em;
-    left: 43%;
+    top: 13em;
+    left: 27%;
+    &-textArea {
+      width: 30em;
+    }
   }
   &__source {
     position: absolute;
-    top: 9em;
-    left: 68%;
+    top: 13em;
+    left: 60%;
+    &-textArea {
+      width: 30em;
+    }
   }
 }
 
 .button {
   position: absolute;
-  top: 15em;
+  top: 18em;
   left: 3em;
 }
 
 .uploadRecord {
   display: block;
   height: 20em;
+}
+
+.errorText {
+  color: red;
+}
+
+.missingInput {
+  border: 1px solid red;
+  border-radius: 25px;
 }

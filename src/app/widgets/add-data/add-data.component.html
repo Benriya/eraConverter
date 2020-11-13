@@ -3,17 +3,26 @@
 </div>
 <div class="uploadRecord">
   <div class="createRecord">
-    <div class="createRecord__name">
-    <strong>Kor neve: </strong>
+    <div class="createRecord__name" [ngClass]="missingInputName">
+      <mat-form-field appearance="fill" class="createRecord__name-type">
+        <mat-label><strong>{{eraNames}}: </strong></mat-label>
+        <mat-select disableRipple>
+          <mat-option (click)="setEraName('Társadalmi státusz')">Társadalmi státusz</mat-option>
+          <mat-option (click)="setEraName('Név')">Név</mat-option>
+          <mat-option (click)="setEraName('Fogyasztói termék')">Fogyasztói termék</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field appearance="legacy">
         <input matInput [(ngModel)]="name">
       </mat-form-field>
+      <span *ngIf="missingInputAge !== ''" class="errorText">Kötelező kitölteni!</span>
     </div>
-    <div class="createRecord__age">
+    <div class="createRecord__age" [ngClass]="missingInputAge">
     <strong>Kor ideje: </strong>
       <mat-form-field appearance="legacy">
         <input matInput [(ngModel)]="age">
       </mat-form-field>
+      <span *ngIf="missingInputAge !== ''" class="errorText">Kötelező kitölteni!</span>
     </div>
     <div class="createRecord__possessions">
     <strong>Vagyon: </strong>
@@ -26,6 +35,14 @@
       <mat-form-field appearance="legacy">
         <input matInput [(ngModel)]="income">
       </mat-form-field>
+      <mat-form-field appearance="fill" class="createRecord__income-singleTime">
+        <mat-label>{{singleTime}}</mat-label>
+        <mat-select>
+          <mat-option (click)="setSignleTime('')">Nincs</mat-option>
+          <mat-option (click)="setSignleTime('Egyszeri')">Egyszeri</mat-option>
+          <mat-option (click)="setSignleTime('Rendszeres')">Rendszeres</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="createRecord__cost">
     <strong>Fogyasztói ár: </strong>
@@ -35,20 +52,20 @@
     </div>
     <div class="createRecord__description">
     <strong>Leírás: </strong>
-      <mat-form-field appearance="legacy">
-        <input matInput [(ngModel)]="description">
+      <mat-form-field appearance="legacy" class="createRecord__description-textArea">
+        <textarea matInput [(ngModel)]="description"></textarea>
       </mat-form-field>
     </div>
     <div class="createRecord__source">
     <strong>Forrás: </strong>
-      <mat-form-field appearance="legacy">
-        <input matInput [(ngModel)]="source">
+      <mat-form-field appearance="legacy" class="createRecord__source-textArea">
+        <textarea matInput [(ngModel)]="source"></textarea>
       </mat-form-field>
     </div>
   </div>
   <div class="button">
     <button class="btn btn-primary"  ngbButtonLabel
-            (click)="postData({id: generateId(), name: name, age: age, possessions: possessions, income: income, cost: cost, description: description, source: source})">
+            (click)="postData({id: generateId(), nameType: eraNames, name: name, age: age, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
       Rekord feltöltése
     </button>
   </div>

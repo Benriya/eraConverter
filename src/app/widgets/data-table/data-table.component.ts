@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, Injectable, OnChanges, OnInit} from '@angular/core';
 import {EraServiceService} from "../../services/era-service.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-data-table',
@@ -7,7 +8,7 @@ import {EraServiceService} from "../../services/era-service.service";
   providers: [EraServiceService],
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements DoCheck, OnInit {
+export class DataTableComponent implements OnInit {
   eraDatas = [];
   page;
   pages = [];
@@ -16,21 +17,9 @@ export class DataTableComponent implements DoCheck, OnInit {
 
   constructor(private eraService: EraServiceService) { }
 
-  ngOnChanges() {
-
-  }
-
   ngOnInit() {
     this.eraService.getEraData(this.eraDatas);
     this.setPaginator();
-  }
-
-  ngDoCheck() {
-   // this.setPaginator();
-  }
-
-  ngAfterViewInit() {
-
   }
 
   nextPage() {
@@ -68,6 +57,17 @@ export class DataTableComponent implements DoCheck, OnInit {
     for (let i = 0; i < 3; i++) {
       this.pages.push(i+1);
     }
-    console.log(this.pages);
   }
+
+  /*openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }*/
 }

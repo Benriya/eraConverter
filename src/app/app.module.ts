@@ -20,6 +20,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { HeaderComponent } from './widgets/header/header.component';
+import { LoginComponent } from './main/login/login.component';
+import { SignUpComponent } from './main/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { HeaderComponent } from './widgets/header/header.component';
     ModifyComponent,
     FrontPageComponent,
     ModifyPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    SignUpComponent
   ],
     imports: [
         BrowserModule,
