@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthResponseModel } from '../Models/authResponse.model';
 import firebase from "firebase";
+import {BehaviorSubject} from "rxjs";
 
 
 @Injectable({providedIn: 'root'})
@@ -26,7 +27,9 @@ export class AuthService {
         this.router.navigate(['']);
         firebase.auth().currentUser.getIdToken()
           .then(
-          (token: string) => this.token = token
+          (token: string) => {
+            console.log(firebase.auth());
+            this.token = token }
         )
       console.log(response);
     })
@@ -41,19 +44,6 @@ export class AuthService {
     );
     return this.token;
   }
-
-  /*signUp(authData: AuthData) {
-    return this.httpClient.post<AuthResponseModel>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXjiW8-asoyQAMob_llGziEEnkl4gWXkE',
-      authData
-    );
-  }
-
-  login(authData: AuthData) {
-    return this.httpClient.post<AuthResponseModel>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXjiW8-asoyQAMob_llGziEEnkl4gWXkE',
-      authData);
-  }*/
 
   signOut() {
     firebase.auth().signOut();

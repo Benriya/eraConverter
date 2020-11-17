@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {EraServiceService} from "../../services/era-service.service";
 import {eraData} from "../../models/eraData.model";
 import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-modify',
@@ -13,11 +14,20 @@ export class ModifyComponent implements OnInit {
 
   eraDatas = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private eraService: EraServiceService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private eraService: EraServiceService) {
+    this.eraService.getEraData().pipe(map(data => {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          this.eraDatas.push(data[key]);
+        }
+      }
+      return this.eraDatas;
+    })).subscribe();
+  }
 
   ngOnInit(): void {
     this.eraData = JSON.parse(JSON.stringify(this.eraData));
-    this.eraService.getEraData(this.eraDatas);
+    //this.eraService.getEraData(this.eraDatas);
     console.log(this.eraData);
   }
 

@@ -10,6 +10,7 @@
           <mat-option (click)="setEraName('Társadalmi státusz')">Társadalmi státusz</mat-option>
           <mat-option (click)="setEraName('Név')">Név</mat-option>
           <mat-option (click)="setEraName('Fogyasztói termék')">Fogyasztói termék</mat-option>
+          <mat-option (click)="setEraName('Szolgáltatás')">Szolgáltatás</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="legacy">
@@ -38,9 +39,9 @@
       <mat-form-field appearance="fill" class="createRecord__income-singleTime">
         <mat-label>{{singleTime}}</mat-label>
         <mat-select>
-          <mat-option (click)="setSignleTime('')">Nincs</mat-option>
-          <mat-option (click)="setSignleTime('Egyszeri')">Egyszeri</mat-option>
-          <mat-option (click)="setSignleTime('Rendszeres')">Rendszeres</mat-option>
+          <mat-option (click)="setSingleTime('')">Nincs</mat-option>
+          <mat-option (click)="setSingleTime('Egyszeri')">Egyszeri</mat-option>
+          <mat-option (click)="setSingleTime('Rendszeres')">Rendszeres</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

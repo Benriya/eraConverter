@@ -10,7 +10,7 @@ export class HeaderComponent implements DoCheck, OnInit {
   title = 'EraConverter';
   isLoggedIn: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +20,7 @@ export class HeaderComponent implements DoCheck, OnInit {
 
   logout() {
     this.authService.signOut();
+    window.location.reload();
   }
 
 }

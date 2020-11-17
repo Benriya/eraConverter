@@ -9,13 +9,19 @@
         <mat-option (click)="setListRecordNumber(100)">100</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field class="search">
+      <mat-label>Search</mat-label>
+      <label>
+        <input matInput maxlength="256" placeholder="Search in products" name="searchOption" [(ngModel)]="searchOption" (keyup)="filteredListOptions()">
+      </label>
+    </mat-form-field>
   </div>
   <div class="error" *ngIf="eraDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>
   <div *ngIf="eraDatas.length !== 0">
     <ul>
-      <li class="listData" *ngFor="let dataset of eraDatas | paginate: { itemsPerPage: listRecordNumber, currentPage: page }; let i = index">
+      <li class="listData" *ngFor="let dataset of filteredPostsList | paginate: { itemsPerPage: listRecordNumber, currentPage: page }; let i = index">
         <mat-card>
           <mat-card-content>
             <div class="listText">
@@ -23,14 +29,27 @@
               <div class="listText__piece">
                 <span><strong>{{dataset.nameType}}: </strong>{{dataset.name}}</span>
               </div>
-              <div class="listText__piece"><span><strong>Kor ideje: </strong>{{dataset.age}}</span></div>
-              <div class="listText__piece"><span><strong>Vagyon: </strong>{{dataset.possessions}}</span></div>
-              <div class="listText__piece"><span><strong>Jövedelem: </strong>{{dataset.income}}
-                <span *ngIf="dataset.singleTime !== ''">({{dataset.singleTime}})</span></span></div>
-              <div class="listText__piece"><span><strong>Fogyasztói ár: </strong>{{dataset.cost}}</span></div>
-              <div class="listText__piece"><span><strong>Leírás: </strong>{{dataset.description}}</span></div>
-              <div class="listText__piece"><span><strong>Forrás: </strong>{{dataset.source}}</span></div>
-              <div class="listText__icon">
+              <div class="listText__piece">
+                <span><strong>Kor ideje: </strong>{{dataset.age}}</span>
+              </div>
+              <div class="listText__piece" *ngIf="dataset.possessions !== ''">
+                <span><strong>Vagyon: </strong>{{dataset.possessions}}</span>
+              </div>
+              <div class="listText__piece" *ngIf="dataset.income !== ''">
+                <span><strong>Jövedelem: </strong>{{dataset.income}}
+                  <span *ngIf="dataset.singleTime !== ''">({{dataset.singleTime}})</span>
+                </span>
+              </div>
+              <div class="listText__piece" *ngIf="dataset.cost !== ''">
+                <span><strong>Fogyasztói ár: </strong>{{dataset.cost}}</span>
+              </div>
+              <div class="listText__piece" *ngIf="dataset.description !== ''">
+                <span><strong>Leírás: </strong>{{dataset.description}}</span>
+              </div>
+              <div class="listText__piece" *ngIf="dataset.source !== ''">
+                <span><strong>Forrás: </strong>{{dataset.source}}</span>
+              </div>
+              <div *ngIf="visible" class="listText__icon">
                 <i class="listText__icon-trash fa fa-trash fa-2x" aria-hidden="true" (click)="deleteData(dataset)"></i>
                 <i class="listText__icon-cog fa fa-cog fa-2x" aria-hidden="true" [routerLink]="['/modifyRecord', dataset]"></i>
               </div>
