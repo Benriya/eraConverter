@@ -3,13 +3,13 @@
   <div class="login">
     <ul class="login__navigation">
       <li *ngIf="!authService.isAuthenticated()" class="login__navigation-item">
-        <a routerLink="/signUp">Signup</a>
+        <button mat-raised-button routerLink="/signUp">Signup</button>
       </li>
       <li *ngIf="!authService.isAuthenticated()" class="login__navigation-item">
-        <a routerLink="/login">Login</a>
+        <button mat-raised-button routerLink="/login">Login</button>
       </li>
-      <li *ngIf="authService.isAuthenticated()" class="login__navigation-item">
-        <a (click)="logout()">Logout</a>
+      <li  *ngIf="authService.isAuthenticated()" class="login__navigation-item">
+        <button mat-raised-button color="warn" (click)="logout()" routerLink="''">Logout</button>
       </li>
     </ul>
   </div>

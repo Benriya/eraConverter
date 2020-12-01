@@ -1,9 +1,7 @@
-import {AfterViewInit, ChangeDetectorRef, Component, DoCheck, Injectable, OnChanges, OnInit} from '@angular/core';
-import {EraServiceService} from "../../services/era-service.service";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {AuthService} from "../../services/auth.service";
-import {AddDataComponent} from "../add-data/add-data.component";
-import {map} from "rxjs/operators";
+import { Component, DoCheck, OnInit } from '@angular/core';
+import {EraServiceService} from '../../services/era-service.service';
+import {AuthService} from '../../services/auth.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-table',
@@ -21,10 +19,9 @@ export class DataTableComponent implements DoCheck, OnInit {
   listSize = 0;
   filteredPostsList;
   searchOption: string;
-  eraDataTypes = ['name', 'age', 'income', 'possessions', 'cost', 'source', 'description', 'id'];
 
   constructor(private eraService: EraServiceService, private authService: AuthService) {
-    this.eraService.getEraData().pipe(map(data => {
+    this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
           this.eraDatas.push(data[key]);
@@ -34,7 +31,7 @@ export class DataTableComponent implements DoCheck, OnInit {
     })).subscribe();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.visible = true;
     }
@@ -43,13 +40,13 @@ export class DataTableComponent implements DoCheck, OnInit {
     this.page = 1;
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
     this.setPaginator();
   }
 
-  filteredListOptions() {
+  filteredListOptions(): any[] {
     this.filteredPostsList = [];
-      for (const post of this.eraDatas) {
+    for (const post of this.eraDatas) {
         if (post.name.toLowerCase().includes(this.searchOption.toLowerCase()) ||
           post.age.toLowerCase().includes(this.searchOption.toLowerCase()) ||
           post.income.toLowerCase().includes(this.searchOption.toLowerCase()) ||
@@ -66,27 +63,27 @@ export class DataTableComponent implements DoCheck, OnInit {
     return this.filteredPostsList;
   }
 
-  resetSearch() {
+  resetSearch(): void {
     this.filteredPostsList = this.eraDatas;
     this.searchOption = '';
   }
 
-  nextPage() {
+  nextPage(): void {
     this.page += 1;
     this.activePage += 1;
   }
 
-  prevPage() {
+  prevPage(): void {
     this.page -= 1;
     this.activePage -= 1;
   }
 
-  switchPage(pageNumber: number) {
+  switchPage(pageNumber: number): void {
     this.page = pageNumber;
     this.activePage = pageNumber;
   }
 
-  deleteData(deleteData) {
+  deleteData(deleteData): void {
     if (this.authService.isAuthenticated()) {
       const index = this.eraDatas.indexOf(deleteData, 0);
       this.eraDatas.splice(index, 1);
@@ -97,16 +94,16 @@ export class DataTableComponent implements DoCheck, OnInit {
     }
   }
 
-  setListRecordNumber(selected: number) {
+  setListRecordNumber(selected: number): void {
     this.listRecordNumber = selected;
   }
 
-  setPaginator() {
+  setPaginator(): void {
     this.pages = [];
     this.listSize = Math.ceil(this.eraDatas.length / this.listRecordNumber);
-    //console.log(this.listSize);
+    // console.log(this.listSize);
     for (let i = 0; i < this.listSize; i++) {
-      this.pages.push(i+1);
+      this.pages.push(i + 1);
     }
   }
 

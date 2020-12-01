@@ -1,8 +1,7 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {EraServiceService} from "../../services/era-service.service";
-import {eraData} from "../../models/eraData.model";
-import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
-import {map} from "rxjs/operators";
+import {Component, Input, OnInit } from '@angular/core';
+import {EraServiceService} from '../../services/era-service.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-modify',
@@ -15,7 +14,7 @@ export class ModifyComponent implements OnInit {
   eraDatas = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private eraService: EraServiceService) {
-    this.eraService.getEraData().pipe(map(data => {
+    this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
           this.eraDatas.push(data[key]);
@@ -27,11 +26,10 @@ export class ModifyComponent implements OnInit {
 
   ngOnInit(): void {
     this.eraData = JSON.parse(JSON.stringify(this.eraData));
-    //this.eraService.getEraData(this.eraDatas);
     console.log(this.eraData);
   }
 
-  updateData() {
+  updateData(): void {
     this.eraData.id = +this.eraData.id;
     for (let i = 0; i < this.eraDatas.length; i++) {
       if (+this.eraData.id === +this.eraDatas[i].id){
@@ -42,14 +40,14 @@ export class ModifyComponent implements OnInit {
     this.returnFrontPage();
   }
 
-  putModifiedData() {
+  putModifiedData(): void {
     this.eraService.postEraData(this.eraDatas).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     );
   }
 
-  returnFrontPage() {
+  returnFrontPage(): void {
     this.router.navigate([''], { relativeTo: this.route });
   }
 }

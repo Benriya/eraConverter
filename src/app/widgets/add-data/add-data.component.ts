@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
-import {EraServiceService} from "../../services/era-service.service";
-import {eraData} from "../../models/eraData.model";
-import {map} from "rxjs/operators";
+import {Component, Injectable, OnInit} from '@angular/core';
+import {EraServiceService} from '../../services/era-service.service';
+import {eraData} from '../../models/eraData.model';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-data',
@@ -25,7 +25,7 @@ export class AddDataComponent implements OnInit {
   missingInputName = '';
 
   constructor(private eraService: EraServiceService) {
-    this.eraService.getEraData().pipe(map(data => {
+    this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
           this.eraDatas.push(data[key]);
@@ -38,7 +38,7 @@ export class AddDataComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  postData(data: eraData) {
+  postData(data: eraData): void {
     console.log(this.name);
     console.log(this.age);
     if (this.name !== '' && this.age !== '') {
@@ -52,18 +52,18 @@ export class AddDataComponent implements OnInit {
     }
   }
 
-  generateId() {
+  generateId(): number {
     return Math.round(Math.random() * 10000 + 1000);
   }
 
-  setEraName(selected: string) {
+  setEraName(selected: string): void {
     this.eraNames = selected;
   }
-  setSingleTime(selected: string) {
+  setSingleTime(selected: string): void {
     this.singleTime = selected;
   }
 
-  noInputError() {
+  noInputError(): void {
       if (this.name === '') {
         this.missingInputName = 'missingInput';
       }

@@ -1,0 +1,28 @@
+<ng-container *ngIf="actionCodeChecked" [ngSwitch]="mode">
+  <!-- Reset Password -->
+  <ng-container *ngSwitchCase="'resetPassword'">
+    <div>
+      <mat-form-field appearance="legacy" class="passwordReset">
+        <input matInput [(ngModel)]="oldPassword" type="text" id="oldPassword"
+               name="oldPassword" placeholder="Old Password">
+      </mat-form-field>
+      <mat-form-field appearance="legacy" class="passwordReset">
+        <input matInput [(ngModel)]="newPassword" type="text" id="newPassword"
+               name="newPassword" placeholder="New Password">
+      </mat-form-field>
+      <mat-form-field appearance="legacy" class="passwordReset">
+        <input matInput [(ngModel)]="confirmPassword" type="text"
+               id="confirmPassword" name="confirmPassword" placeholder="Confirm
+      Password">
+      </mat-form-field>
+      <button class="btn btn-primary resetButton" (click)="handleResetPassword()">Confirm</button>
+    </div>
+  </ng-container>
+  <!-- Recover Email -->
+  <ng-container *ngSwitchCase="'recoverEmail'">
+  </ng-container>
+
+  <!-- Verify Email -->
+  <ng-container *ngSwitchCase="'verifyEmail'">
+  </ng-container>
+</ng-container>

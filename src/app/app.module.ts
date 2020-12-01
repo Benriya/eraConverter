@@ -22,6 +22,9 @@ import {MatSelectModule} from "@angular/material/select";
 import { HeaderComponent } from './widgets/header/header.component';
 import { LoginComponent } from './main/login/login.component';
 import { SignUpComponent } from './main/sign-up/sign-up.component';
+import { PasswordResetComponent } from './main/password-reset/password-reset.component';
+import { UserManagementComponent } from './main/user-management/user-management.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
     ModifyPageComponent,
     HeaderComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    PasswordResetComponent,
+    UserManagementComponent
   ],
     imports: [
         BrowserModule,
@@ -50,6 +55,7 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
         FontAwesomeModule,
         AppRoutingModule,
         MatOptionModule,
+        MatButtonModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

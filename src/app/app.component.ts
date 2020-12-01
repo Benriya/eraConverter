@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { EraServiceService } from "./services/era-service.service";
-import firebase from "firebase";
-
+import firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore';
+import * as admin from 'firebase-admin';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,15 @@ export class AppComponent implements OnInit{
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    /*admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+      databaseURL: 'eraconverter-62594.firebaseapp.com'
+    });*/
     firebase.initializeApp({
-      apiKey: "AIzaSyAqUSHFm_xyKLRVhrIvlNiFcbR6oUbUtV8",
-      authDomain: "eraconverter-62594.firebaseapp.com"
-    })
+      apiKey: 'AIzaSyAqUSHFm_xyKLRVhrIvlNiFcbR6oUbUtV8',
+      authDomain: 'eraconverter-62594.firebaseapp.com'
+    });
   }
 
 }

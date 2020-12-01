@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card">
   <div>
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="form-group">
@@ -27,11 +27,19 @@
       </div>
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-primary actionButton"
           type="submit"
           [disabled]="!authForm.valid"
         >
           Login
+        </button>
+      </div>
+      <div class="resetPassword actionButton">
+        <button
+          class="btn btn-primary"
+          [routerLink]="'/passwordReset'"
+        >
+          Reset password
         </button>
       </div>
     </form>
