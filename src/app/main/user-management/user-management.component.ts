@@ -19,7 +19,6 @@ export class UserManagementComponent implements OnInit {
   // this is a real password reset.
   actionCode: string;
 
-  oldPassword: string;
   newPassword: string;
   confirmPassword: string;
 
