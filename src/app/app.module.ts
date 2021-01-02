@@ -25,6 +25,7 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { PasswordResetComponent } from './main/password-reset/password-reset.component';
 import { UserManagementComponent } from './main/user-management/user-management.component';
 import {MatButtonModule} from '@angular/material/button';
+import { SuggestsListComponent } from './widgets/suggests-list/suggests-list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatButtonModule} from '@angular/material/button';
     LoginComponent,
     SignUpComponent,
     PasswordResetComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    SuggestsListComponent
   ],
     imports: [
         BrowserModule,

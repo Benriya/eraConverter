@@ -8,7 +8,6 @@ import * as serviceAccount from '../../serviceAccountKey.json'*/
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
@@ -32,7 +31,10 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     /*admin.initializeApp({
       credential: admin.credential.cert(this.params),
-      databaseURL: 'eraconverter-62594.firebaseapp.com'
+      databaseURL: 'eraconverter-62594.firebaseapp.com',
+      databaseAuthVariableOverride: {
+        uid: "my-service-worker"
+      }
     });*/
     firebase.initializeApp({
       apiKey: 'AIzaSyAqUSHFm_xyKLRVhrIvlNiFcbR6oUbUtV8',

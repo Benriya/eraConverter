@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import {eraData} from "../models/eraData.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class EraServiceService {
     return this.httpClient.put('https://eraconverter-62594.firebaseio.com/eraDatas.json?auth=' + token, postData);
   }
 
+  suggestEraData(postData: any[]): any {
+    const token = this.authService.getToken();
+    return this.httpClient.put('https://eraconverter-62594.firebaseio.com/eraDataSuggests.json?auth=' + token, postData);
+  }
+
   onDelete(deleteData): any {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.delete('https://eraconverter-62594.firebaseio.com/eraDatas.json/' + deleteData, {headers});
@@ -21,5 +27,9 @@ export class EraServiceService {
 
   getEraData(): any {
     return this.httpClient.get('https://eraconverter-62594.firebaseio.com/eraDatas.json');
+  }
+
+  getSuggestedEraData(): any {
+    return this.httpClient.get('https://eraconverter-62594.firebaseio.com/eraDataSuggests.json');
   }
 }

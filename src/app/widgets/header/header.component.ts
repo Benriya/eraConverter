@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -6,9 +6,10 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
   title = 'EraConverter';
   isLoggedIn: boolean;
+  admin = false;
 
   constructor(public authService: AuthService) { }
 
@@ -18,6 +19,10 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authService.signOut();
     window.location.reload();
+  }
+
+  ngDoCheck(): void {
+    this.admin = this.authService.admin;
   }
 
 }

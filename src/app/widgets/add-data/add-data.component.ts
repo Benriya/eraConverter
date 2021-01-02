@@ -2,6 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {eraData} from '../../models/eraData.model';
 import {map} from 'rxjs/operators';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-add-data',
@@ -11,7 +12,9 @@ import {map} from 'rxjs/operators';
 })
 @Injectable({providedIn: 'root'})
 export class AddDataComponent implements OnInit {
+  admin = false;
   eraDatas = [];
+  suggestDatas = [];
   eraNames = 'Név';
   singleTime = '';
   name = '';
@@ -24,7 +27,7 @@ export class AddDataComponent implements OnInit {
   missingInputAge = '';
   missingInputName = '';
 
-  constructor(private eraService: EraServiceService) {
+  constructor(private eraService: EraServiceService, private authService: AuthService) {
     this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
@@ -33,17 +36,38 @@ export class AddDataComponent implements OnInit {
       }
       return this.eraDatas;
     })).subscribe();
+
+    this.eraService.getSuggestedEraData().pipe(map((data: any) => {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          this.suggestDatas.push(data[key]);
+        }
+      }
+      return this.suggestDatas;
+    })).subscribe();
   }
 
   ngOnInit(): void {
+    this.admin = this.authService.admin;
+    console.log(this.admin);
   }
 
   postData(data: eraData): void {
-    console.log(this.name);
-    console.log(this.age);
     if (this.name !== '' && this.age !== '') {
       this.eraDatas.push(data);
       this.eraService.postEraData(this.eraDatas).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    }else {
+      this.noInputError();
+    }
+  }
+
+  suggestData(data: eraData): void {
+    if (this.name !== '' && this.age !== '') {
+      this.suggestDatas.push(data);
+      this.eraService.suggestEraData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );

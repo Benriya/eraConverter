@@ -11,6 +11,9 @@
       <li  *ngIf="authService.isAuthenticated()" class="login__navigation-item">
         <button mat-raised-button color="warn" (click)="logout()" routerLink="''">Logout</button>
       </li>
+      <li  *ngIf="authService.isAuthenticated() && admin" class="login__navigation-item">
+        <button mat-raised-button color="accent" routerLink="suggests">Ajánlatok</button>
+      </li>
     </ul>
   </div>
 </mat-card>

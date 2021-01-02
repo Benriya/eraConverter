@@ -65,9 +65,13 @@
     </div>
   </div>
   <div class="button">
-    <button class="btn btn-primary"  ngbButtonLabel
+    <button class="btn btn-primary" *ngIf="admin"  ngbButtonLabel
             (click)="postData({id: generateId(), nameType: eraNames, name: name, age: age, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
       Rekord feltöltése
+    </button>
+    <button class="btn btn-primary" *ngIf="!admin"  ngbButtonLabel
+            (click)="suggestData({id: generateId(), nameType: eraNames, name: name, age: age, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
+      Rekord ajánlása
     </button>
   </div>
 </div>

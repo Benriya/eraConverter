@@ -12,6 +12,7 @@ export class AuthService {
   user = false;
   token: string;
   uid: string;
+  admin = false;
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
@@ -41,6 +42,9 @@ export class AuthService {
           window.alert('Please validate your email address. Kindly check your inbox.');
         } else {
           this.uid = response.user.uid;
+          if (this.uid === 'zzE012cY20crwe0VulbjEFnVFAE3' || this.uid === '1flFItcqi0W5p7YD7GqJh0J5KOz2') {
+            this.admin = true;
+          }
           this.router.navigate(['']);
           firebase.auth().currentUser.getIdToken()
             .then(

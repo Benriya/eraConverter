@@ -1,6 +1,12 @@
 {
   "rules": {
-    ".read": true,
-    ".write": "auth != null"
+    "eraDatas": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "eraDataSuggests": {
+      ".read": true,
+      ".write": true
+    }
   }
 }

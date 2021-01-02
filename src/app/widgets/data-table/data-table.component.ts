@@ -32,7 +32,7 @@ export class DataTableComponent implements DoCheck, OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.admin) {
       this.visible = true;
     }
     this.filteredPostsList = this.eraDatas;

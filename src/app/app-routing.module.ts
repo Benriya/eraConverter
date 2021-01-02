@@ -7,6 +7,7 @@ import {LoginComponent} from "./main/login/login.component";
 import {AuthGuard} from "./services/auth-guard.service";
 import {PasswordResetComponent} from "./main/password-reset/password-reset.component";
 import {UserManagementComponent} from "./main/user-management/user-management.component";
+import {SuggestsListComponent} from "./widgets/suggests-list/suggests-list.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'passwordReset', component: PasswordResetComponent },
   { path: 'userManagement', component: UserManagementComponent },
+  { path: 'suggests', component: SuggestsListComponent }
 ];
 
 @NgModule({
