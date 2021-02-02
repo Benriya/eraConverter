@@ -2,7 +2,7 @@
   background-color: #50acf3;
 
   &__title {
-    display: inline-block;
+    display: inline;
     margin-left: 2em;
     margin-right: 2em;
     text-align: center;
@@ -12,9 +12,10 @@
 
 .login {
   z-index: 10;
-  position: absolute;
-  left: 20%;
-  top: 10%;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 20em;
 
   &__navigation {
     border-width: 3px;

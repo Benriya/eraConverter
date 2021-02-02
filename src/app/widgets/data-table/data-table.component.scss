@@ -6,18 +6,26 @@
 mat-card {
   background-color: #c4dcfc;
 }
+
 .paginator {
+  margin-left: 3em;
   position: absolute;
   display: inline-block;
 }
 
+.numberOfRecords {
+  margin-left: 3em;
+}
+
+.search {
+  width: 50em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .listText {
   &__icon{
-
-    &-trash {
-
-    }
-
     &-cog {
       position: absolute;
       top: 1em;
@@ -29,6 +37,7 @@ mat-card {
 i:hover {
   cursor: pointer;
 }
+
 a:hover {
   cursor: pointer;
 }

@@ -22,7 +22,7 @@
           ngModel
           name="password"
           required
-          minlength="6"
+          minlength="8"
         />
       </div>
       <div>
@@ -31,16 +31,16 @@
           type="submit"
           [disabled]="!authForm.valid"
         >
-          Login
+          Belépés
         </button>
       </div>
       <div class="resetPassword actionButton">
-        <button
-          class="btn btn-primary"
+        Elfelejtetted a jelszavad?
+        <a
           [routerLink]="'/passwordReset'"
         >
-          Reset password
-        </button>
+          Új jelszó kérése
+        </a>
       </div>
     </form>
   </div>

@@ -19,7 +19,7 @@ export class AuthService {
   SendVerificationMail(): any {
     return firebase.auth().currentUser.sendEmailVerification()
       .then(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/userManagement']);
       });
   }
 

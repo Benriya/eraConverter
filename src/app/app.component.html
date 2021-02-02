@@ -1,6 +1,8 @@
-<app-header id="header"></app-header>
-<div id="content">
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+<div class="app-body" (window:resize)="onResize()">
+  <app-header id="header"></app-header>
+  <div id="content">
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

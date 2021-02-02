@@ -63,9 +63,15 @@ export class UserManagementComponent implements OnInit {
           case 'recoverEmail': {
 
           } break
-          /*case UserManagementActions.verifyEmail: {
-
-          } break*/
+          case 'verifyEmail': {
+            console.log('hi');
+            this.authService.getAuth().applyActionCode(this.actionCode).then(result => {
+              this.actionCodeChecked = true;
+              this.router.navigate(['/login']);
+            }).catch(e => {
+              alert(e);
+            });
+          } break
           default: {
             console.log('query parameters are missing');
             this.router.navigate(['/login']);

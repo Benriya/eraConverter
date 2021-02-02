@@ -22,18 +22,30 @@
           ngModel
           name="password"
           required
-          minlength="6"
+          minlength="8"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          ngModel
+          name="confirmPassword"
+          required
+          minlength="8"
         />
       </div>
       <div>
         <button
           class="btn btn-primary"
           type="submit"
-          [disabled]="!authForm.valid"
+          [disabled]="!authForm.valid || !isPasswordSame(authForm)"
         >
-          SignUp
+          Regisztráció
         </button>
-        <span *ngIf="signedUp">Sikeres regisztráció, kérlek jelentkezz be</span>
+        <span *ngIf="signedUp"> Sikeres regisztráció, kérlek hitelesítsd az email címedet!</span>
       </div>
     </form>
   </div>

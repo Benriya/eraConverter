@@ -22,4 +22,8 @@ export class SignUpComponent implements OnInit {
     });
     this.signedUp = true;
   }
+
+  isPasswordSame(form: NgForm) {
+    return form.value.password === form.value.confirmPassword;
+  }
 }
