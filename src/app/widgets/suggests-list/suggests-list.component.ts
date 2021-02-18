@@ -3,6 +3,8 @@ import {EraServiceService} from "../../services/era-service.service";
 import {AuthService} from "../../services/auth.service";
 import {map} from "rxjs/operators";
 import {eraData} from "../../models/eraData.model";
+import {GlobalService} from "../../services/global.service";
+import {ResponsiveService} from "../../services/responsive.service";
 
 @Component({
   selector: 'app-suggests-list',
@@ -20,8 +22,9 @@ export class SuggestsListComponent implements OnInit {
   listSize = 0;
   filteredPostsList;
   searchOption: string;
+  pagination: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
+  constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService, private globalService: GlobalService) {
     this.eraService.getSuggestedEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
@@ -48,29 +51,27 @@ export class SuggestsListComponent implements OnInit {
     this.filteredPostsList = this.suggestDatas;
     console.log(this.filteredPostsList);
     this.page = 1;
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.pagination = 'pagination';
+      }
+      else{
+        this.pagination = 'pagination pagination-lg';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 
   ngDoCheck(): void {
     this.setPaginator();
   }
 
-  filteredListOptions(): any[] {
-    this.filteredPostsList = [];
-    for (const post of this.suggestDatas) {
-      if (post.name.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.age.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.income.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.age.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.income.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.cost.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.possessions.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.description.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.source.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-        post.id.toString().includes(this.searchOption.toLowerCase())) {
-        this.filteredPostsList.push(post);
-      }
-    }
-    return this.filteredPostsList;
+  filterOptions() {
+    this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.suggestDatas);
   }
 
   resetSearch(): void {
@@ -120,7 +121,6 @@ export class SuggestsListComponent implements OnInit {
   setPaginator(): void {
     this.pages = [];
     this.listSize = Math.ceil(this.suggestDatas.length / this.listRecordNumber);
-    // console.log(this.listSize);
     for (let i = 0; i < this.listSize; i++) {
       this.pages.push(i + 1);
     }

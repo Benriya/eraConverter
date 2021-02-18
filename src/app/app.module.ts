@@ -40,7 +40,7 @@ import { SuggestsListComponent } from './widgets/suggests-list/suggests-list.com
     SignUpComponent,
     PasswordResetComponent,
     UserManagementComponent,
-    SuggestsListComponent
+    SuggestsListComponent,
   ],
     imports: [
         BrowserModule,

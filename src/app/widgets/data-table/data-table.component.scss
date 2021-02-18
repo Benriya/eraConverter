@@ -1,6 +1,7 @@
 .listData {
-  width: 30%;
-  margin-right: 3em;
+  width: 21em;
+  margin-right: 2em;
+  margin-bottom: 2em;
   display: inline-block;
 }
 mat-card {
@@ -9,27 +10,27 @@ mat-card {
 
 .paginator {
   margin-left: 3em;
-  position: absolute;
+  position: relative;
   display: inline-block;
 }
 
-.numberOfRecords {
-  margin-left: 3em;
-}
+.sort {
+  &__numberOfRecords {
+    margin-left: 3em;
+  }
 
-.search {
-  width: 50em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  &__search {
+    width: auto;
+    margin-left: 3em;
+  }
 }
 
 .listText {
   &__icon{
     &-cog {
       position: absolute;
-      top: 1em;
-      right: 1em;
+      top: 0.5em;
+      right: 0.5em;
     }
   }
 }

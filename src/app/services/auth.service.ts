@@ -6,7 +6,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-
 @Injectable({providedIn: 'root'})
 export class AuthService {
   user = false;
@@ -42,22 +41,38 @@ export class AuthService {
           window.alert('Please validate your email address. Kindly check your inbox.');
         } else {
           this.uid = response.user.uid;
-          if (this.uid === 'zzE012cY20crwe0VulbjEFnVFAE3' || this.uid === '1flFItcqi0W5p7YD7GqJh0J5KOz2') {
-            this.admin = true;
-          }
+
           this.router.navigate(['']);
           firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => {
                 console.log(firebase.auth());
-                this.token = token; }
-            );
+                sessionStorage.setItem('token', token);
+                this.token = token;
+              }
+              );
         }
         console.log(response);
-    })
+      })
       .catch(err => {
-      console.log(err);
-    });
+        console.log(err);
+      });
+  }
+
+  checkIfAdmin() {
+    if (firebase.auth().currentUser != null) {
+      if (firebase.auth().currentUser.uid === 'zzE012cY20crwe0VulbjEFnVFAE3' || firebase.auth().currentUser.uid === '1flFItcqi0W5p7YD7GqJh0J5KOz2') {
+        this.admin = true;
+      }
+    }
+  }
+
+  createSession(authData: AuthData) {
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        console.log('hi');
+        return this.signIn(authData);
+      });
   }
 
   resetPasswordInit(email: string) {
@@ -69,18 +84,19 @@ export class AuthService {
   }
 
   getToken(): string {
-    firebase.auth().currentUser.getIdToken().then(
-      (token: string) => this.token = token
-    );
+    this.token = sessionStorage.getItem('token');
     return this.token;
   }
 
   signOut(): void {
     firebase.auth().signOut();
     this.token = null;
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
 
   isAuthenticated(): boolean {
-    return this.token != null;
+    this.checkIfAdmin();
+    return sessionStorage.getItem('token') != null;
   }
 }

@@ -1,19 +1,21 @@
 <mat-card class="header">
   <mat-card-title class="header__title" [routerLink]="''">{{title}}</mat-card-title>
   <div class="login">
-    <ul class="login__navigation">
-      <li *ngIf="!authService.isAuthenticated()" class="login__navigation-item">
-        <button mat-raised-button routerLink="/signUp">Regisztráció</button>
+    <ul class="login__navigation" [ngClass]="mobileNavigation">
+      <li *ngIf="!authService.isAuthenticated()" [ngClass]="onMobile" class="login__navigation-item">
+        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="/signUp">Regisztráció</button>
       </li>
-      <li *ngIf="!authService.isAuthenticated()" class="login__navigation-item">
-        <button mat-raised-button routerLink="/login">Belépés</button>
+      <li *ngIf="!authService.isAuthenticated()" [ngClass]="onMobile" class="login__navigation-item">
+        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="/login">Belépés</button>
       </li>
-      <li  *ngIf="authService.isAuthenticated()" class="login__navigation-item">
-        <button mat-raised-button color="warn" (click)="logout()" routerLink="''">Kilépés</button>
+      <li  *ngIf="authService.isAuthenticated()" [ngClass]="onMobile" class="login__navigation-item">
+        <button class="login__navigation-item-button" [ngClass]="onMobileButton" (click)="logout()" routerLink="/home">Kilépés</button>
       </li>
-      <li  *ngIf="authService.isAuthenticated() && admin" class="login__navigation-item">
-        <button mat-raised-button color="accent" routerLink="suggests">Ajánlatok</button>
+      <li  *ngIf="authService.isAuthenticated() && admin" [ngClass]="onMobile" class="login__navigation-item">
+        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="suggests">Ajánlatok</button>
       </li>
     </ul>
   </div>
 </mat-card>
+
+

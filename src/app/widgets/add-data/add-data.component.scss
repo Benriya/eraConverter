@@ -1,57 +1,45 @@
+@import "src/styles";
 .createRecord {
+  position: relative;
+  left: 3em;
   &__name {
-    position: absolute;
-    top: 5em;
-    left: 2%;
+    display: inline-block;
     &-type {
       width: 12em;
     }
   }
   &__age {
-    position: absolute;
-    top: 5em;
-    left: 30%;
+    display: inline-block;
   }
   &__possessions {
-    position: absolute;
-    top: 5em;
-    left: 55%;
+    display: inline-block;
   }
   &__income {
-    position: absolute;
-    top: 13em;
-    left: 2%;
+    display: inline-block;
     &-singleTime {
       width: 8em;
     }
   }
   &__cost {
-    position: absolute;
-    top: 5em;
-    left: 80%;
+    display: inline-block;
   }
   &__description {
-    position: absolute;
-    top: 13em;
-    left: 27%;
+    display: inline-block;
     &-textArea {
       width: 30em;
     }
   }
   &__source {
-    position: absolute;
-    top: 13em;
-    left: 60%;
+    display: inline-block;
     &-textArea {
       width: 30em;
     }
   }
 }
 
-.button {
-  position: absolute;
-  top: 18em;
-  left: 3em;
+.submitButton {
+  width: 10em;
+  height: 3em;
 }
 
 .uploadRecord {

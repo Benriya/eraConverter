@@ -1,6 +1,6 @@
 <div>
-  <div>
-    <mat-form-field class="numberOfRecords" appearance="fill">
+  <div class="sort">
+    <mat-form-field class="sort__numberOfRecords" appearance="fill">
       <mat-label>Rekordok száma: {{listRecordNumber}}</mat-label>
       <mat-select disableRipple>
         <mat-option (click)="setListRecordNumber(10)">10</mat-option>
@@ -9,12 +9,27 @@
         <mat-option (click)="setListRecordNumber(100)">100</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="search">
-      <mat-label>Search</mat-label>
+    <mat-form-field class="sort__search">
+      <mat-label>Keresés</mat-label>
       <label>
-        <input matInput maxlength="256" placeholder="Search in products" name="searchOption" [(ngModel)]="searchOption" (keyup)="filteredListOptions()">
+        <input matInput maxlength="256" placeholder="Keresés a rekordok között" name="searchOption" [(ngModel)]="searchOption" (keyup)="filterOptions()">
       </label>
     </mat-form-field>
+  </div>
+  <div class="paginator">
+    <nav aria-label="..." class="nav d-flex justify-content-center">
+      <ul [ngClass]="pagination" class="flex-wrap">
+        <li class="page-item" [ngClass]="activePage === 1 ? 'disabled' : ''">
+          <a class="page-link" (click)="prevPage()" tabindex="-1">Előző</a>
+        </li>
+        <li class="page-item" *ngFor="let i of pages" [ngClass]="activePage === i ? 'active' : ''">
+          <a class="page-link" (click)="switchPage(i)">{{i}} <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item" [ngClass]="activePage === pages.length ? 'disabled' : ''">
+          <a class="page-link" (click)="nextPage()">Következő</a>
+        </li>
+      </ul>
+    </nav>
   </div>
   <div class="error" *ngIf="eraDatas.length === 0">
     <h1>Nincs adat</h1>
@@ -56,20 +71,19 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <hr>
       </li>
     </ul>
     <div class="paginator">
-      <nav aria-label="...">
-        <ul class="pagination pagination-lg">
+      <nav aria-label="..." class="nav d-flex justify-content-center">
+        <ul [ngClass]="pagination" class="flex-wrap">
           <li class="page-item" [ngClass]="activePage === 1 ? 'disabled' : ''">
-            <a class="page-link" (click)="prevPage()" tabindex="-1">Previous</a>
+            <a class="page-link" (click)="prevPage()" tabindex="-1">Előző</a>
           </li>
           <li class="page-item" *ngFor="let i of pages" [ngClass]="activePage === i ? 'active' : ''">
             <a class="page-link" (click)="switchPage(i)">{{i}} <span class="sr-only">(current)</span></a>
           </li>
           <li class="page-item" [ngClass]="activePage === pages.length ? 'disabled' : ''">
-            <a class="page-link" (click)="nextPage()">Next</a>
+            <a class="page-link" (click)="nextPage()">Következő</a>
           </li>
         </ul>
       </nav>

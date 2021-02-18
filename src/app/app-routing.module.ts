@@ -12,12 +12,13 @@ import {SuggestsListComponent} from "./widgets/suggests-list/suggests-list.compo
 
 const routes: Routes = [
   { path: '', component: FrontPageComponent},
+  { path: 'home', component: FrontPageComponent},
   { path: 'modifyRecord', component: ModifyPageComponent, canActivate: [AuthGuard] },
   { path: 'signUp', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'passwordReset', component: PasswordResetComponent },
   { path: 'userManagement', component: UserManagementComponent },
-  { path: 'suggests', component: SuggestsListComponent }
+  { path: 'suggests', component: SuggestsListComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

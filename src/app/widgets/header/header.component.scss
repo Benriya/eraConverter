@@ -2,8 +2,7 @@
   background-color: #50acf3;
 
   &__title {
-    display: inline;
-    margin-left: 2em;
+    display: inline-block;
     margin-right: 2em;
     text-align: center;
     cursor: pointer;
@@ -13,21 +12,47 @@
 .login {
   z-index: 10;
   position: fixed;
-  display: block;
-  top: 0;
-  left: 20em;
+  top: 0.5em;
 
   &__navigation {
-    border-width: 3px;
-    border-color: #000000;
+    position: fixed;
+    display: block;
+    left: 15em;
 
     &-item {
+      position: relative;
+      height: 2.8em;
+      width: 7.8em;
       display: inline-block;
       box-shadow: 2px 2px whitesmoke;
       border-radius: 10px;
       padding: 5px;
-      margin-left: 5em;
+      margin-right: 5em;
       cursor: pointer;
+      float: left;
+
+      &-button {
+        height: 2em;
+        width: 7em;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+      }
     }
+  }
+}
+
+.mobileNavigation {
+  width: 27em;
+  left: 9em;
+}
+.onMobile {
+  height: 2em;
+  width: 5.3em;
+  margin-right: 3em;
+  &__button {
+    width: 6.5em;
+    font-size: 10px;
   }
 }

@@ -2,6 +2,8 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {AuthService} from '../../services/auth.service';
 import {map} from 'rxjs/operators';
+import {ResponsiveService} from "../../services/responsive.service";
+import {GlobalService} from "../../services/global.service";
 
 @Component({
   selector: 'app-data-table',
@@ -19,16 +21,11 @@ export class DataTableComponent implements DoCheck, OnInit {
   listSize = 0;
   filteredPostsList;
   searchOption: string;
+  pagination: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
-    this.eraService.getEraData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.eraDatas.push(data[key]);
-        }
-      }
-      return this.eraDatas;
-    })).subscribe();
+  constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService,
+              private globalService: GlobalService) {
+    this.getEraDatas();
   }
 
   ngOnInit(): void {
@@ -36,31 +33,29 @@ export class DataTableComponent implements DoCheck, OnInit {
       this.visible = true;
     }
     this.filteredPostsList = this.eraDatas;
-    console.log(this.filteredPostsList);
     this.page = 1;
+
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.pagination = 'pagination';
+      }
+      else{
+        this.pagination = 'pagination pagination-lg';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 
   ngDoCheck(): void {
     this.setPaginator();
   }
 
-  filteredListOptions(): any[] {
-    this.filteredPostsList = [];
-    for (const post of this.eraDatas) {
-        if (post.name.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.age.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.income.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.age.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.income.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.cost.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.possessions.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.description.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.source.toLowerCase().includes(this.searchOption.toLowerCase()) ||
-          post.id.toString().includes(this.searchOption.toLowerCase())) {
-          this.filteredPostsList.push(post);
-        }
-      }
-    return this.filteredPostsList;
+  filterOptions() {
+    this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.eraDatas);
   }
 
   resetSearch(): void {
@@ -106,6 +101,18 @@ export class DataTableComponent implements DoCheck, OnInit {
       this.pages.push(i + 1);
     }
   }
+
+  getEraDatas() {
+    this.eraService.getEraData().pipe(map((data: any) => {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          this.eraDatas.push(data[key]);
+        }
+      }
+      return this.eraDatas;
+    })).subscribe();
+  }
+
 
   /*openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {

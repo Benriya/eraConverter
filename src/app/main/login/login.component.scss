@@ -1,8 +1,16 @@
-.actionButton {
+@import "src/styles";
+.resetPassword {
+  margin-top: 1em;
   display: inline-block;
 }
 
 .card {
+  margin-top: 3em;
   width: 40%;
   margin-left: 30%;
+}
+
+.mobile {
+  width: 80%;
+  margin-left: 10%;
 }

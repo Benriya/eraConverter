@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {ResponsiveService} from "./services/responsive.service";
-/*import * as admin from 'firebase-admin';
-import * as serviceAccount from '../../serviceAccountKey.json'*/
 
 @Component({
   selector: 'app-root',
@@ -13,6 +11,7 @@ import * as serviceAccount from '../../serviceAccountKey.json'*/
 })
 export class AppComponent implements OnInit{
   title = 'eraconverter-Web';
+  mobile = false;
 
   constructor(private responsiveService: ResponsiveService){
   }
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit{
 
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
       if(isMobile){
-        console.log('Mobile device detected')
+        this.mobile = true;
       }
       else{
         console.log('Desktop detected')

@@ -20,7 +20,7 @@ export class ResponsiveService {
   }
 
   public checkWidth() {
-    var width = window.innerWidth;
+    let width = window.innerWidth;
     if (width <= 768) {
       this.screenWidth = 'sm';
       this.onMobileChange(true);

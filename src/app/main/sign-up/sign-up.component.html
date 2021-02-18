@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" [ngClass]="matCard">
   <div>
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="form-group">
@@ -14,7 +14,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">Jelszó</label>
         <input
           type="password"
           id="password"
@@ -26,7 +26,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="confirmPassword">Confirm password</label>
+        <label for="confirmPassword">Jelszó megerősítése</label>
         <input
           type="password"
           id="confirmPassword"
@@ -39,7 +39,7 @@
       </div>
       <div>
         <button
-          class="btn btn-primary"
+          class="submitButton"
           type="submit"
           [disabled]="!authForm.valid || !isPasswordSame(authForm)"
         >
