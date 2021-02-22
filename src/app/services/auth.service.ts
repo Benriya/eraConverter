@@ -22,7 +22,6 @@ export class AuthService {
       });
   }
 
-
   signUp(authData: AuthData): void {
     firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {

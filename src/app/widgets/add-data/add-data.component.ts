@@ -3,6 +3,7 @@ import {EraServiceService} from '../../services/era-service.service';
 import {eraData} from '../../models/eraData.model';
 import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
+import {ResponsiveService} from "../../services/responsive.service";
 
 @Component({
   selector: 'app-add-data',
@@ -26,8 +27,10 @@ export class AddDataComponent implements OnInit {
   source = '';
   missingInputAge = '';
   missingInputName = '';
+  textLine: string;
+  selector: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
+  constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService) {
     this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
@@ -49,7 +52,21 @@ export class AddDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin = this.authService.admin;
-    console.log(this.admin);
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.selector = 'mobileSelector';
+        this.textLine = 'mobileTextLine';
+      }
+      else{
+        this.selector = '';
+        this.textLine = '';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 
   postData(data: eraData): void {

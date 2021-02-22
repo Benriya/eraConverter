@@ -29,9 +29,6 @@ export class DataTableComponent implements DoCheck, OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authService.admin) {
-      this.visible = true;
-    }
     this.filteredPostsList = this.eraDatas;
     this.page = 1;
 
@@ -52,6 +49,7 @@ export class DataTableComponent implements DoCheck, OnInit {
 
   ngDoCheck(): void {
     this.setPaginator();
+    this.visible = this.authService.admin;
   }
 
   filterOptions() {

@@ -1,36 +1,63 @@
 @import "src/styles";
+
+.title {
+  margin-left: 3em;
+}
+
 .createRecord {
   position: relative;
   left: 3em;
   &__name {
     display: inline-block;
+    margin-right: 1em;
     &-type {
       width: 12em;
+    }
+    &-line {
+      width: 20em;
     }
   }
   &__age {
     display: inline-block;
+    margin-right: 1em;
+    &-line {
+      width: 20em;
+    }
   }
   &__possessions {
     display: inline-block;
+    margin-right: 1em;
+    &-line {
+      width: 20em;
+    }
   }
   &__income {
     display: inline-block;
+    margin-right: 1em;
     &-singleTime {
       width: 8em;
+    }
+    &-line {
+      width: 20em;
     }
   }
   &__cost {
     display: inline-block;
+    margin-right: 1em;
+    &-line {
+      width: 20em;
+    }
   }
   &__description {
     display: inline-block;
+    margin-right: 1em;
     &-textArea {
       width: 30em;
     }
   }
   &__source {
     display: inline-block;
+    margin-right: 1em;
     &-textArea {
       width: 30em;
     }
@@ -40,6 +67,7 @@
 .submitButton {
   width: 10em;
   height: 3em;
+  margin-left: 3em;
 }
 
 .uploadRecord {
@@ -54,4 +82,12 @@
 .missingInput {
   border: 1px solid red;
   border-radius: 25px;
+}
+
+.mobileTextLine {
+  width: 13em;
+}
+
+.mobileSelector {
+  width: 6em;
 }
