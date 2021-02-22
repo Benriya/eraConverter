@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {ResponsiveService} from "../../services/responsive.service";
 
 @Component({
   selector: 'app-password-reset',
@@ -8,10 +9,24 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent implements OnInit {
+  matCard: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private responsiveService: ResponsiveService) { }
 
   ngOnInit(): void {
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.matCard = 'mobile';
+      }
+      else{
+        this.matCard = '';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 
   resetPassword(form: NgForm) {

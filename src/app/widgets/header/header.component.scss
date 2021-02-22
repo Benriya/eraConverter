@@ -21,8 +21,8 @@
 
     &-item {
       position: relative;
-      height: 2.8em;
-      width: 7.8em;
+      height: 3em;
+      width: 8em;
       display: inline-block;
       box-shadow: 2px 2px whitesmoke;
       border-radius: 10px;
@@ -32,8 +32,8 @@
       float: left;
 
       &-button {
-        height: 2em;
-        width: 7em;
+        height: 2.3em;
+        width: 7.3em;
         border-radius: 5px;
         border: none;
         text-align: center;
@@ -48,10 +48,11 @@
   left: 9em;
 }
 .onMobile {
-  height: 2em;
+  height: 2.5em;
   width: 5.3em;
   margin-right: 3em;
   &__button {
+    height: 2.5em;
     width: 6.5em;
     font-size: 10px;
   }

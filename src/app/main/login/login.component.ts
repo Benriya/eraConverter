@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private responsiveService: ResponsiveService) { }
 
-  ngOnInit(): void {this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+  ngOnInit(): void {
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
     if(isMobile){
       this.matCard = 'mobile';
     }
