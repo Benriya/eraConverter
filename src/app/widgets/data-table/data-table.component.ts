@@ -53,7 +53,7 @@ export class DataTableComponent implements DoCheck, OnInit {
   }
 
   filterOptions() {
-    this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.eraDatas);
+    this.filteredPostsList = this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.eraDatas);
   }
 
   resetSearch(): void {

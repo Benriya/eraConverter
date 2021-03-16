@@ -71,7 +71,7 @@ export class SuggestsListComponent implements OnInit {
   }
 
   filterOptions() {
-    this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.suggestDatas);
+    this.filteredPostsList = this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.suggestDatas);
   }
 
   resetSearch(): void {
