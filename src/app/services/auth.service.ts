@@ -90,6 +90,7 @@ export class AuthService {
   signOut(): void {
     firebase.auth().signOut();
     this.token = null;
+    this.admin = false;
     sessionStorage.removeItem('token');
     this.router.navigate(['/home']);
   }

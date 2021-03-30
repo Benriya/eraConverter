@@ -5,37 +5,58 @@
             <mat-card-title class="listText__piece-name">#{{eraData.id}}</mat-card-title>
             <div class="listText__piece"><strong>Társadalmi státusz/név/fogyasztói termék: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.name">
+                <label>
+                  <input matInput [(ngModel)]="eraData.name">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Kor ideje: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.age">
+                <label>
+                  <input matInput [(ngModel)]="eraData.age">
+                </label>
+              </mat-form-field>
+            </div>
+            <div class="listText__piece"><strong>Kvartilis: </strong>
+              <mat-form-field appearance="legacy">
+                <label>
+                  <input matInput [(ngModel)]="eraData.quartile">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Vagyon: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.possessions">
+                <label>
+                  <input matInput [(ngModel)]="eraData.possessions">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Jövedelem: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.income">
+                <label>
+                  <input matInput [(ngModel)]="eraData.income">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Fogyasztói ár: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.cost">
+                <label>
+                  <input matInput [(ngModel)]="eraData.cost">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Leírás: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.description">
+                <label>
+                  <input matInput [(ngModel)]="eraData.description">
+                </label>
               </mat-form-field>
             </div>
             <div class="listText__piece"><strong>Leírás: </strong>
               <mat-form-field appearance="legacy">
-                <input matInput [(ngModel)]="eraData.source">
+                <label>
+                  <input matInput [(ngModel)]="eraData.source">
+                </label>
               </mat-form-field>
             </div>
           </div>

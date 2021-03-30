@@ -93,7 +93,7 @@ export class DataTableComponent implements DoCheck, OnInit {
 
   setPaginator(): void {
     this.pages = [];
-    this.listSize = Math.ceil(this.eraDatas.length / this.listRecordNumber);
+    this.listSize = Math.ceil(this.filteredPostsList.length / this.listRecordNumber);
     // console.log(this.listSize);
     for (let i = 0; i < this.listSize; i++) {
       this.pages.push(i + 1);

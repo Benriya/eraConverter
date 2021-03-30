@@ -25,6 +25,7 @@ export class AddDataComponent implements OnInit {
   cost = '';
   description = '';
   source = '';
+  quartile = '';
   missingInputAge = '';
   missingInputName = '';
   textLine: string;

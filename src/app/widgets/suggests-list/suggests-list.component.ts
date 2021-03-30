@@ -120,7 +120,7 @@ export class SuggestsListComponent implements OnInit {
 
   setPaginator(): void {
     this.pages = [];
-    this.listSize = Math.ceil(this.suggestDatas.length / this.listRecordNumber);
+    this.listSize = Math.ceil(this.filteredPostsList.length / this.listRecordNumber);
     for (let i = 0; i < this.listSize; i++) {
       this.pages.push(i + 1);
     }

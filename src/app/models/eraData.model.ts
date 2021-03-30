@@ -3,6 +3,7 @@ export interface eraData {
   nameType: string;
   name: string;
   age: string;
+  quartile: string;
   possessions?: string;
   income?: string;
   singleTime?: string;

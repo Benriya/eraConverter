@@ -14,27 +14,31 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="legacy" class="createRecord__name-line" [ngClass]="textLine">
-        <input matInput [(ngModel)]="name">
+          <input matInput [(ngModel)]="name">
       </mat-form-field>
-      <span *ngIf="missingInputAge !== ''" class="errorText">Kötelező kitölteni!</span>
     </div>
     <div class="createRecord__age" [ngClass]="missingInputAge">
     <strong>Kor ideje: </strong>
       <mat-form-field appearance="legacy" class="createRecord__age-line" [ngClass]="textLine">
-        <input matInput [(ngModel)]="age">
+          <input matInput [(ngModel)]="age">
       </mat-form-field>
-      <span *ngIf="missingInputAge !== ''" class="errorText">Kötelező kitölteni!</span>
+    </div>
+    <div class="createRecord__age" [ngClass]="missingInputAge">
+      <strong>Kvartilis: </strong>
+      <mat-form-field appearance="legacy" class="createRecord__quartile-line" [ngClass]="textLine">
+          <input matInput [(ngModel)]="quartile">
+      </mat-form-field>
     </div>
     <div class="createRecord__possessions">
     <strong>Vagyon: </strong>
       <mat-form-field appearance="legacy" class="createRecord__possessions-line" [ngClass]="textLine">
-        <input matInput [(ngModel)]="possessions">
+          <input matInput [(ngModel)]="possessions">
       </mat-form-field>
     </div>
     <div class="createRecord__income">
     <strong>Jövedelem: </strong>
       <mat-form-field appearance="legacy" class="createRecord__income-line" [ngClass]="textLine">
-        <input matInput [(ngModel)]="income">
+          <input matInput [(ngModel)]="income">
       </mat-form-field>
       <mat-form-field appearance="fill" class="createRecord__income-singleTime" [ngClass]="selector">
         <mat-label>{{singleTime}}</mat-label>
@@ -48,31 +52,31 @@
     <div class="createRecord__cost">
     <strong>Fogyasztói ár: </strong>
       <mat-form-field appearance="legacy" class="createRecord__cost-line" [ngClass]="textLine">
-        <input matInput [(ngModel)]="cost">
+          <input matInput [(ngModel)]="cost">
       </mat-form-field>
     </div>
     <div>
       <div class="createRecord__description">
       <strong>Leírás: </strong>
         <mat-form-field appearance="legacy" class="createRecord__description-textArea" [ngClass]="textLine">
-          <textarea matInput [(ngModel)]="description"></textarea>
+            <input matInput [(ngModel)]="description">
         </mat-form-field>
       </div>
       <div class="createRecord__source">
       <strong>Forrás: </strong>
         <mat-form-field appearance="legacy" class="createRecord__source-textArea" [ngClass]="textLine">
-          <textarea matInput [(ngModel)]="source"></textarea>
+            <input matInput [(ngModel)]="source">
         </mat-form-field>
       </div>
     </div>
   </div>
   <div class="button">
     <button class="submitButton" *ngIf="admin"  ngbButtonLabel
-            (click)="postData({id: generateId(), nameType: eraNames, name: name, age: age, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
+            (click)="postData({id: generateId(), nameType: eraNames, name: name, age: age, quartile: quartile, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
       Rekord feltöltése
     </button>
     <button class="submitButton" *ngIf="!admin"  ngbButtonLabel
-            (click)="suggestData({id: generateId(), nameType: eraNames, name: name, age: age, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
+            (click)="suggestData({id: generateId(), nameType: eraNames, name: name, age: age, quartile: quartile, possessions: possessions, income: income, singleTime: singleTime, cost: cost, description: description, source: source})">
       Rekord ajánlása
     </button>
   </div>
