@@ -1,6 +1,8 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {ResponsiveService} from "../../services/responsive.service";
+import { EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-header',
@@ -8,12 +10,14 @@ import {ResponsiveService} from "../../services/responsive.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, DoCheck {
+  @Output() eraDatasEmitter = new EventEmitter<boolean>();
   title = 'EraConverter';
   isLoggedIn: boolean;
   admin = false;
   onMobile: string;
   onMobileButton: string;
   mobileNavigation: string;
+  eraDatas = true;
 
   constructor(public authService: AuthService, private responsiveService: ResponsiveService) { }
 
@@ -43,6 +47,11 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.admin = this.authService.admin;
+  }
+
+  changeView() {
+    this.eraDatas = !this.eraDatas;
+    this.eraDatasEmitter.emit(this.eraDatas);
   }
 
 }

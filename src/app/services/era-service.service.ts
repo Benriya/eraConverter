@@ -15,12 +15,12 @@ export class EraServiceService {
     return this.httpClient.put('https://eraconverter-62594.firebaseio.com/eraDatas.json?auth=' + token, postData);
   }
 
-  suggestEraData(postData: any[]): any {
+  suggestData(postData: any[]): any {
     const token = this.authService.getToken();
     return this.httpClient.put('https://eraconverter-62594.firebaseio.com/eraDataSuggests.json?auth=' + token, postData);
   }
 
-  onDelete(deleteData): any {
+  onDeleteEraData(deleteData): any {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.delete('https://eraconverter-62594.firebaseio.com/eraDatas.json/' + deleteData, {headers});
   }
@@ -29,7 +29,21 @@ export class EraServiceService {
     return this.httpClient.get('https://eraconverter-62594.firebaseio.com/eraDatas.json');
   }
 
-  getSuggestedEraData(): any {
+  getSuggestedData(): any {
     return this.httpClient.get('https://eraconverter-62594.firebaseio.com/eraDataSuggests.json');
+  }
+
+  postCurrencyData(postData: any[]): any {
+    const token = this.authService.getToken();
+    return this.httpClient.put('https://eraconverter-62594.firebaseio.com/currencyDatas.json?auth=' + token, postData);
+  }
+
+  onDeleteCurrencyData(deleteData): any {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.delete('https://eraconverter-62594.firebaseio.com/currencyDatas.json/' + deleteData, {headers});
+  }
+
+  getCurrencyData(): any {
+    return this.httpClient.get('https://eraconverter-62594.firebaseio.com/currencyDatas.json');
   }
 }

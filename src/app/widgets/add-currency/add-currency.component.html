@@ -1,0 +1,36 @@
+<div class="title">
+  <h2 class="widgetTitle">Rekord hozzáadása az adatbázishoz:</h2>
+</div>
+<div class="uploadRecord">
+  <div class="createRecord">
+    <div class="createRecord__currencyOne" [ngClass]="missingCurrencyOne">
+      <strong>Pénznemből: </strong>
+      <mat-form-field appearance="legacy" class="createRecord__currencyOne-line" [ngClass]="textLine">
+        <input matInput [(ngModel)]="currencyOne">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__currencyTwo" [ngClass]="missingCurrencyTwo">
+      <strong>Pénznembe: </strong>
+      <mat-form-field appearance="legacy" class="createRecord__createRecord__currencyTwo-line" [ngClass]="textLine">
+        <input matInput [(ngModel)]="currencyTwo">
+      </mat-form-field>
+    </div>
+    <div class="createRecord__rate" [ngClass]="missingInputRate">
+      <strong>Szorzó: </strong>
+      <mat-form-field appearance="legacy" class="createRecord__rate-line" [ngClass]="textLine">
+        <input matInput [(ngModel)]="rate">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="button">
+    <button class="submitButton" *ngIf="admin"  ngbButtonLabel
+            (click)="postData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate})">
+      Rekord feltöltése
+    </button>
+    <button class="submitButton" *ngIf="!admin"  ngbButtonLabel
+            (click)="suggestData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate})">
+      Rekord ajánlása
+    </button>
+  </div>
+</div>
+

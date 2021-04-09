@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-content>
+    <div class="listText">
+      <mat-card-title class="listText__piece-currencyOne">#{{dataset.id}}</mat-card-title>
+      <div class="listText__piece">
+        <strong>Pénznemből: </strong><span>{{dataset.currencyOne}}</span>
+      </div>
+      <div class="listText__piece">
+        <span><strong>Pénznembe: </strong>{{dataset.currencyTwo}}</span>
+      </div>
+      <div class="listText__piece">
+        <span><strong>Szorzó: </strong>{{dataset.rate}}</span>
+      </div>
+      <div *ngIf="visible" class="listText__icon">
+        <i class="listText__icon-trash fa fa-trash fa-2x" aria-hidden="true" (click)="deleteData()"></i>
+        <i class="listText__icon-cog fa fa-cog fa-2x" aria-hidden="true" [routerLink]="['/modifyRecord', dataset]"></i>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

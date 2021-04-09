@@ -1,7 +1,17 @@
-<div *ngIf="authService.isAuthenticated()" [ngClass]="onMobile">
-  <app-add-data></app-add-data>
-</div>
-<div>
-  <app-data-table></app-data-table>
+<div *ngIf="eraDatas">
+  <div *ngIf="authService.isAuthenticated()" [ngClass]="onMobile">
+    <app-add-data></app-add-data>
+  </div>
+  <div>
+    <app-data-table></app-data-table>
+  </div>
 </div>
 
+<div *ngIf="!eraDatas">
+  <div *ngIf="authService.isAuthenticated()" [ngClass]="onMobile">
+    <app-add-currency></app-add-currency>
+  </div>
+  <div>
+    <app-data-table-currency></app-data-table-currency>
+  </div>
+</div>

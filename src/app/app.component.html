@@ -1,8 +1,9 @@
 <div class="app-body" (window:resize)="onResize()">
-  <app-header id="header"></app-header>
+  <app-header id="header" (eraDatasEmitter)='dataType($event)'></app-header>
   <div id="content">
     <main>
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="!href.includes('/home')"></router-outlet>
+      <app-front-page [eraDatas]="dataTypeEra" *ngIf="href.includes('/home')"></app-front-page>
     </main>
   </div>
 </div>

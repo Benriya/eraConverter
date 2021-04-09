@@ -26,4 +26,21 @@ export class GlobalService {
     return filteredPostsList;
   }
 
+  checkIfMobile(selector, textLine) {
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        selector = 'mobileSelector';
+        textLine = 'mobileTextLine';
+      }
+      else{
+        selector = '';
+        textLine = '';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
+  }
 }

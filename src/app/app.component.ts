@@ -3,17 +3,20 @@ import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {ResponsiveService} from "./services/responsive.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, DoCheck{
   title = 'eraconverter-Web';
   mobile = false;
+  dataTypeEra: boolean;
+  href: string;
 
-  constructor(private responsiveService: ResponsiveService){
+  constructor(private responsiveService: ResponsiveService, private router: Router){
   }
 
   ngOnInit(): void {
@@ -35,6 +38,14 @@ export class AppComponent implements OnInit{
 
   onResize(){
     this.responsiveService.checkWidth();
+  }
+
+  ngDoCheck(): void {
+    this.href = this.router.url;
+  }
+
+  dataType(value: boolean) {
+    this.dataTypeEra = value;
   }
 
 }

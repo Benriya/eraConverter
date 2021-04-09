@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {ResponsiveService} from "../../services/responsive.service";
 
@@ -8,11 +8,13 @@ import {ResponsiveService} from "../../services/responsive.service";
   styleUrls: ['./front-page.component.scss']
 })
 export class FrontPageComponent implements OnInit {
+  @Input() eraDatas;
   onMobile: string;
 
   constructor(public authService: AuthService, private responsiveService: ResponsiveService) { }
 
   ngOnInit(): void {
+    this.eraDatas = true;
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
       if(isMobile){
         this.onMobile = 'mobileView';

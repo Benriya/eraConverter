@@ -7,66 +7,35 @@
 .createRecord {
   position: relative;
   left: 3em;
-  &__name {
+
+  &__currencyOne {
     display: inline-block;
     margin-right: 1em;
+
     &-type {
       width: 12em;
     }
+
     &-line {
       width: 20em;
     }
   }
-  &__age {
+
+  &__currencyTwo {
     display: inline-block;
     margin-right: 1em;
+
     &-line {
       width: 20em;
     }
   }
-  &__quartile {
+
+  &__rate {
     display: inline-block;
     margin-right: 1em;
+
     &-line {
       width: 20em;
-    }
-  }
-  &__possessions {
-    display: inline-block;
-    margin-right: 1em;
-    &-line {
-      width: 20em;
-    }
-  }
-  &__income {
-    display: inline-block;
-    margin-right: 1em;
-    &-singleTime {
-      width: 8em;
-    }
-    &-line {
-      width: 20em;
-    }
-  }
-  &__cost {
-    display: inline-block;
-    margin-right: 1em;
-    &-line {
-      width: 20em;
-    }
-  }
-  &__description {
-    display: inline-block;
-    margin-right: 1em;
-    &-textArea {
-      width: 40em;
-    }
-  }
-  &__source {
-    display: inline-block;
-    margin-right: 1em;
-    &-textArea {
-      width: 40em;
     }
   }
 }

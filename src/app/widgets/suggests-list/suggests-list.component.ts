@@ -3,8 +3,6 @@ import {EraServiceService} from "../../services/era-service.service";
 import {AuthService} from "../../services/auth.service";
 import {map} from "rxjs/operators";
 import {eraData} from "../../models/eraData.model";
-import {GlobalService} from "../../services/global.service";
-import {ResponsiveService} from "../../services/responsive.service";
 
 @Component({
   selector: 'app-suggests-list',
@@ -14,18 +12,13 @@ import {ResponsiveService} from "../../services/responsive.service";
 export class SuggestsListComponent implements OnInit {
   suggestDatas = [];
   eraDatas = [];
-  page: number;
-  pages = [];
-  listRecordNumber = 50;
-  activePage = 1;
-  visible = false;
-  listSize = 0;
+  listRecord = 50;
+  visible: boolean;
+  page = 1;
   filteredPostsList;
-  searchOption: string;
-  pagination: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService, private globalService: GlobalService) {
-    this.eraService.getSuggestedEraData().pipe(map((data: any) => {
+  constructor(private eraService: EraServiceService, private authService: AuthService) {
+    this.eraService.getSuggestedData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
           this.suggestDatas.push(data[key]);
@@ -49,56 +42,13 @@ export class SuggestsListComponent implements OnInit {
       this.visible = true;
     }
     this.filteredPostsList = this.suggestDatas;
-    console.log(this.filteredPostsList);
-    this.page = 1;
-    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
-      if(isMobile){
-        this.pagination = 'pagination';
-      }
-      else{
-        this.pagination = 'pagination pagination-lg';
-      }
-    });
-    this.onResize();
-  }
-
-  onResize(){
-    this.responsiveService.checkWidth();
-  }
-
-  ngDoCheck(): void {
-    this.setPaginator();
-  }
-
-  filterOptions() {
-    this.filteredPostsList = this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.suggestDatas);
-  }
-
-  resetSearch(): void {
-    this.filteredPostsList = this.suggestDatas;
-    this.searchOption = '';
-  }
-
-  nextPage(): void {
-    this.page += 1;
-    this.activePage += 1;
-  }
-
-  prevPage(): void {
-    this.page -= 1;
-    this.activePage -= 1;
-  }
-
-  switchPage(pageNumber: number): void {
-    this.page = pageNumber;
-    this.activePage = pageNumber;
   }
 
   deleteData(deleteData): void {
     if (this.authService.isAuthenticated()) {
       const index = this.suggestDatas.indexOf(deleteData, 0);
       this.suggestDatas.splice(index, 1);
-      this.eraService.suggestEraData(this.suggestDatas).subscribe(
+      this.eraService.suggestData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
@@ -114,16 +64,16 @@ export class SuggestsListComponent implements OnInit {
     );
   }
 
-  setListRecordNumber(selected: number): void {
-    this.listRecordNumber = selected;
+  setPage(page) {
+    this.page = page;
   }
 
-  setPaginator(): void {
-    this.pages = [];
-    this.listSize = Math.ceil(this.filteredPostsList.length / this.listRecordNumber);
-    for (let i = 0; i < this.listSize; i++) {
-      this.pages.push(i + 1);
-    }
+  setListRecord(listRecord) {
+    this.listRecord = listRecord;
+  }
+
+  setSearch(datas) {
+    this.filteredPostsList = datas;
   }
 
 }

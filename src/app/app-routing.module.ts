@@ -11,8 +11,8 @@ import {SuggestsListComponent} from "./widgets/suggests-list/suggests-list.compo
 
 
 const routes: Routes = [
-  { path: '', component: FrontPageComponent},
-  { path: 'home', component: FrontPageComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: FrontPageComponent },
   { path: 'modifyRecord', component: ModifyPageComponent, canActivate: [AuthGuard] },
   { path: 'signUp', component: SignUpComponent },
   { path: 'login', component: LoginComponent },

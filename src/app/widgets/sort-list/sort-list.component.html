@@ -1,0 +1,17 @@
+<div class="sort">
+  <mat-form-field class="sort__numberOfRecords" appearance="fill">
+    <mat-label>Rekordok száma: {{listRecordNumber}}</mat-label>
+    <mat-select disableRipple>
+      <mat-option (click)="setListRecordNumber(10)">10</mat-option>
+      <mat-option (click)="setListRecordNumber(25)">25</mat-option>
+      <mat-option (click)="setListRecordNumber(50)">50</mat-option>
+      <mat-option (click)="setListRecordNumber(100)">100</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="sort__search">
+    <mat-label>Keresés</mat-label>
+    <label>
+      <input matInput maxlength="256" placeholder="Keresés a rekordok között" name="searchOption" [(ngModel)]="searchOption" (keyup)="filterOptions()">
+    </label>
+  </mat-form-field>
+</div>

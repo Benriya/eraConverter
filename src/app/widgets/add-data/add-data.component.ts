@@ -4,6 +4,7 @@ import {eraData} from '../../models/eraData.model';
 import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
 import {ResponsiveService} from "../../services/responsive.service";
+import {GlobalService} from "../../services/global.service";
 
 @Component({
   selector: 'app-add-data',
@@ -28,10 +29,11 @@ export class AddDataComponent implements OnInit {
   quartile = '';
   missingInputAge = '';
   missingInputName = '';
+  missingInputQuartile = '';
   textLine: string;
   selector: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService) {
+  constructor(private eraService: EraServiceService, private authService: AuthService, private globalService: GlobalService) {
     this.eraService.getEraData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
@@ -41,7 +43,7 @@ export class AddDataComponent implements OnInit {
       return this.eraDatas;
     })).subscribe();
 
-    this.eraService.getSuggestedEraData().pipe(map((data: any) => {
+    this.eraService.getSuggestedData().pipe(map((data: any) => {
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
           this.suggestDatas.push(data[key]);
@@ -53,21 +55,7 @@ export class AddDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin = this.authService.admin;
-    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
-      if(isMobile){
-        this.selector = 'mobileSelector';
-        this.textLine = 'mobileTextLine';
-      }
-      else{
-        this.selector = '';
-        this.textLine = '';
-      }
-    });
-    this.onResize();
-  }
-
-  onResize(){
-    this.responsiveService.checkWidth();
+    this.globalService.checkIfMobile(this.selector, this.textLine);
   }
 
   postData(data: eraData): void {
@@ -85,7 +73,7 @@ export class AddDataComponent implements OnInit {
   suggestData(data: eraData): void {
     if (this.name !== '' && this.age !== '') {
       this.suggestDatas.push(data);
-      this.eraService.suggestEraData(this.suggestDatas).subscribe(
+      this.eraService.suggestData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
@@ -112,6 +100,10 @@ export class AddDataComponent implements OnInit {
 
       if (this.age === '') {
         this.missingInputAge = 'missingInput';
+      }
+
+      if (this.quartile === '') {
+        this.missingInputQuartile = 'missingInput';
       }
   }
 

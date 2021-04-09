@@ -26,6 +26,12 @@ import { PasswordResetComponent } from './main/password-reset/password-reset.com
 import { UserManagementComponent } from './main/user-management/user-management.component';
 import {MatButtonModule} from '@angular/material/button';
 import { SuggestsListComponent } from './widgets/suggests-list/suggests-list.component';
+import { AddCurrencyComponent } from './widgets/add-currency/add-currency.component';
+import { DataTableCurrencyComponent } from './widgets/data-table-currency/data-table-currency.component';
+import { DataTableCardComponent } from './widgets/data-table-card/data-table-card.component';
+import { DataTableCardCurrencyComponent } from './widgets/data-table-card-currency/data-table-card-currency.component';
+import { PaginatorComponent } from './widgets/paginator/paginator.component';
+import { SortListComponent } from './widgets/sort-list/sort-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +47,12 @@ import { SuggestsListComponent } from './widgets/suggests-list/suggests-list.com
     PasswordResetComponent,
     UserManagementComponent,
     SuggestsListComponent,
+    AddCurrencyComponent,
+    DataTableCurrencyComponent,
+    DataTableCardComponent,
+    DataTableCardCurrencyComponent,
+    PaginatorComponent,
+    SortListComponent,
   ],
     imports: [
         BrowserModule,
