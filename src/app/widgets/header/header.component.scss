@@ -45,15 +45,18 @@
 
 .mobileNavigation {
   width: 27em;
-  left: 9em;
+  left: 6.8em;
 }
 .onMobile {
   height: 2.5em;
   width: 5.3em;
-  margin-right: 3em;
+  margin-right: 0;
   &__button {
     height: 2.5em;
     width: 6.5em;
     font-size: 10px;
+  }
+  &__title {
+    font-size: 20px;
   }
 }

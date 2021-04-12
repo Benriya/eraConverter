@@ -9,6 +9,7 @@ import {eraData} from "../../models/eraData.model";
 export class DataTableCardComponent implements OnInit {
   @Input() dataset: eraData;
   @Input() visible;
+  @Input() suggest: boolean;
   @Output() eraDatasEmitter = new EventEmitter<eraData>();
   @Output() postDataset = new EventEmitter<eraData>();
 

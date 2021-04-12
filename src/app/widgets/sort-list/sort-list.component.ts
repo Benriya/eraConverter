@@ -9,6 +9,7 @@ import {GlobalService} from "../../services/global.service";
 export class SortListComponent implements OnInit {
   @Input() filteredPostsList;
   @Input() eraDatas;
+  @Input() searchType: boolean;
   @Output() listRecord = new EventEmitter<number>();
   @Output() filteredPost = new EventEmitter<any>();
   searchOption: string;
@@ -16,7 +17,11 @@ export class SortListComponent implements OnInit {
 
   constructor(private globalService: GlobalService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchOption = '';
+    console.log(this.eraDatas);
+    console.log(this.filteredPostsList);
+  }
 
   setListRecordNumber(selected: number): void {
     this.listRecordNumber = selected;
@@ -24,7 +29,11 @@ export class SortListComponent implements OnInit {
   }
 
   filterOptions() {
-    this.filteredPostsList = this.globalService.filteredListOptions(this.filteredPostsList, this.searchOption, this.eraDatas);
+    if (this.searchType) {
+      this.filteredPostsList = this.globalService.filteredListOptionsEra(this.filteredPostsList, this.searchOption, this.eraDatas);
+    } else {
+      this.filteredPostsList = this.globalService.filteredListOptionsCurrency(this.filteredPostsList, this.searchOption, this.eraDatas);
+    }
     this.filteredPost.emit(this.filteredPostsList);
   }
 

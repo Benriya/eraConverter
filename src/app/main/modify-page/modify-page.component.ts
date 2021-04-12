@@ -7,13 +7,14 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./modify-page.component.scss']
 })
 export class ModifyPageComponent implements OnInit {
-  eraData;
+  data;
+  isEra: boolean;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(data => {
-      this.eraData = data;
+      this.data = data;
       console.log(data);
     });
   }

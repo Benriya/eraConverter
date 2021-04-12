@@ -1,7 +1,8 @@
-import {Component, DoCheck, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {ResponsiveService} from "../../services/responsive.service";
 import { EventEmitter } from '@angular/core';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,6 +12,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit, DoCheck {
   @Output() eraDatasEmitter = new EventEmitter<boolean>();
+  @Input() href;
   title = 'EraConverter';
   isLoggedIn: boolean;
   admin = false;
@@ -18,8 +20,9 @@ export class HeaderComponent implements OnInit, DoCheck {
   onMobileButton: string;
   mobileNavigation: string;
   eraDatas = true;
+  onMobileTitle: string;
 
-  constructor(public authService: AuthService, private responsiveService: ResponsiveService) { }
+  constructor(public authService: AuthService, private responsiveService: ResponsiveService, private router: Router) { }
 
   ngOnInit(): void {
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
@@ -27,11 +30,13 @@ export class HeaderComponent implements OnInit, DoCheck {
         this.onMobile = 'onMobile';
         this.onMobileButton = 'onMobile__button';
         this.mobileNavigation = 'mobileNavigation';
+        this.onMobileTitle = "onMobile__title";
       }
       else{
         this.onMobile = '';
         this.onMobileButton = '';
         this.mobileNavigation = '';
+        this.onMobileTitle = '';
       }
     });
     this.onResize();

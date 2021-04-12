@@ -1,5 +1,5 @@
 <mat-card class="header">
-  <mat-card-title class="header__title" [routerLink]="'/home'">{{title}}</mat-card-title>
+  <mat-card-title class="header__title" [ngClass]="onMobileTitle" [routerLink]="'/home'">{{title}}</mat-card-title>
   <div class="login">
     <ul class="login__navigation" [ngClass]="mobileNavigation">
       <li *ngIf="!authService.isAuthenticated()" [ngClass]="onMobile" class="login__navigation-item">
@@ -12,9 +12,9 @@
         <button class="login__navigation-item-button" [ngClass]="onMobileButton" (click)="logout()" routerLink="/home">Kilépés</button>
       </li>
       <li  *ngIf="authService.isAuthenticated() && admin" [ngClass]="onMobile" class="login__navigation-item">
-        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="suggests">Ajánlatok</button>
+        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="/suggests">Ajánlatok</button>
       </li>
-      <li [ngClass]="onMobile" class="login__navigation-item" (click)="changeView()">
+      <li [ngClass]="onMobile" *ngIf="href.includes('/home')" class="login__navigation-item" (click)="changeView()">
         <button class="login__navigation-item-button" *ngIf="eraDatas" [ngClass]="onMobileButton">Korszakváltó</button>
         <button class="login__navigation-item-button" *ngIf="!eraDatas" [ngClass]="onMobileButton">Pénznemváltó</button>
       </li>

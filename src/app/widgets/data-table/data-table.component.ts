@@ -2,6 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {AuthService} from '../../services/auth.service';
 import {map} from 'rxjs/operators';
+import {GlobalService} from "../../services/global.service";
 
 @Component({
   selector: 'app-data-table',
@@ -16,8 +17,8 @@ export class DataTableComponent implements DoCheck, OnInit {
   visible = false;
   filteredPostsList;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
-    this.getEraDatas();
+  constructor(private eraService: EraServiceService, private authService: AuthService, private global: GlobalService) {
+    this.global.getEraData(this.eraDatas);
   }
 
   ngOnInit(): void {
@@ -37,17 +38,6 @@ export class DataTableComponent implements DoCheck, OnInit {
         (error) => console.log(error)
       );
     }
-  }
-
-  getEraDatas() {
-    this.eraService.getEraData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.eraDatas.push(data[key]);
-        }
-      }
-      return this.eraDatas;
-    })).subscribe();
   }
 
   setPage(page) {

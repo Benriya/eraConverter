@@ -4,7 +4,6 @@ import {AuthService} from "../../services/auth.service";
 import {ResponsiveService} from "../../services/responsive.service";
 import {map} from "rxjs/operators";
 import {GlobalService} from "../../services/global.service";
-import {eraData} from "../../models/eraData.model";
 import {currencyData} from "../../models/currencyData.model";
 
 @Component({
@@ -27,23 +26,8 @@ export class AddCurrencyComponent implements OnInit {
   selector: string;
 
   constructor(private eraService: EraServiceService, private authService: AuthService, private responsiveService: ResponsiveService, private globalService: GlobalService) {
-    this.eraService.getCurrencyData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.currencyDatas.push(data[key]);
-        }
-      }
-      return this.currencyDatas;
-    })).subscribe();
-
-    this.eraService.getSuggestedData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.suggestDatas.push(data[key]);
-        }
-      }
-      return this.suggestDatas;
-    })).subscribe();
+    this.globalService.getCurrencyData(this.currencyDatas);
+    this.globalService.getSuggestedCurrData(this.suggestDatas);
   }
 
   ngOnInit(): void {
@@ -70,7 +54,7 @@ export class AddCurrencyComponent implements OnInit {
   suggestData(data: currencyData): void {
     if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined) {
       this.suggestDatas.push(data);
-      this.eraService.suggestData(this.suggestDatas).subscribe(
+      this.eraService.suggestCurrencyData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );

@@ -28,7 +28,7 @@
       <div *ngIf="visible" class="listText__icon">
         <i class="listText__icon-trash fa fa-trash fa-2x" aria-hidden="true" (click)="deleteData()"></i>
         <i class="listText__icon-cog fa fa-cog fa-2x" aria-hidden="true" [routerLink]="['/modifyRecord', dataset]"></i>
-        <i class="listText__icon-plane fa fa-paper-plane fa-2x" aria-hidden="true" (click)="postData()"></i>
+        <i class="listText__icon-plane fa fa-paper-plane fa-2x" *ngIf="suggest" aria-hidden="true" (click)="postData()"></i>
       </div>
     </div>
   </mat-card-content>

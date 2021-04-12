@@ -1,14 +1,29 @@
 <div>
-  <app-sort-list [filteredPostsList]="filteredPostsList" [eraDatas]="suggestDatas" (listRecord)="setListRecord($event)" (filteredPost)="setSearch($event)"></app-sort-list>
-  <div class="error" *ngIf="suggestDatas.length === 0">
+  <app-sort-list [filteredPostsList]="filteredPostsListEra" [eraDatas]="suggestEraDatas" [searchType]="true" (listRecord)="setListRecordEra($event)" (filteredPost)="setSearchEra($event)"></app-sort-list>
+  <div class="error" *ngIf="suggestEraDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>
-  <div *ngIf="suggestDatas.length !== 0">
+  <div *ngIf="suggestEraDatas.length !== 0">
     <ul>
-      <li class="listData" *ngFor="let dataset of filteredPostsList | paginate: { itemsPerPage: listRecord, currentPage: page }; let i = index">
-        <app-data-table-card [dataset]="dataset" [visible]="visible" (eraDatasEmitter)="deleteData($event)" (postDataset)="postData($event)"></app-data-table-card>
+      <li class="listData" *ngFor="let dataset of filteredPostsListEra | paginate: { itemsPerPage: listRecordEra, currentPage: pageEra }; let i = index">
+        <app-data-table-card [dataset]="dataset" [visible]="visible" [suggest]="true" (eraDatasEmitter)="deleteEraData($event)" (postDataset)="postEraData($event)"></app-data-table-card>
       </li>
     </ul>
-    <app-paginator [listRecordNumber]="listRecord" [filteredPostsList]="filteredPostsList" (pageEmit)="setPage($event)"></app-paginator>
+    <app-paginator [listRecordNumber]="listRecordEra" [filteredPostsList]="filteredPostsListEra" (pageEmit)="setPageEra($event)"></app-paginator>
   </div>
 </div>
+<div>
+  <app-sort-list [filteredPostsList]="filteredPostsListCurr" [eraDatas]="suggestCurrDatas" [searchType]="false" (listRecord)="setListRecordCurr($event)" (filteredPost)="setSearchCurr($event)"></app-sort-list>
+  <div class="error" *ngIf="suggestCurrDatas.length === 0">
+    <h1>Nincs adat</h1>
+  </div>
+  <div *ngIf="suggestCurrDatas.length !== 0">
+    <ul>
+      <li class="listData" *ngFor="let dataset of filteredPostsListCurr | paginate: { itemsPerPage: listRecordCurr, currentPage: pageCurr }; let i = index">
+        <app-data-table-card-currency [dataset]="dataset" [visible]="visible" [suggest]="true" (eraDatasEmitter)="deleteCurrData($event)" (postDataset)="postCurrData($event)"></app-data-table-card-currency>
+      </li>
+    </ul>
+    <app-paginator [listRecordNumber]="listRecordCurr" [filteredPostsList]="filteredPostsListCurr" (pageEmit)="setPageCurr($event)"></app-paginator>
+  </div>
+</div>
+

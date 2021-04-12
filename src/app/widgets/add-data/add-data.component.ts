@@ -34,23 +34,8 @@ export class AddDataComponent implements OnInit {
   selector: string;
 
   constructor(private eraService: EraServiceService, private authService: AuthService, private globalService: GlobalService) {
-    this.eraService.getEraData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.eraDatas.push(data[key]);
-        }
-      }
-      return this.eraDatas;
-    })).subscribe();
-
-    this.eraService.getSuggestedData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.suggestDatas.push(data[key]);
-        }
-      }
-      return this.suggestDatas;
-    })).subscribe();
+    this.globalService.getEraData(this.eraDatas);
+    this.globalService.getSuggestedEraData(this.suggestDatas);
   }
 
   ngOnInit(): void {
@@ -73,7 +58,7 @@ export class AddDataComponent implements OnInit {
   suggestData(data: eraData): void {
     if (this.name !== '' && this.age !== '') {
       this.suggestDatas.push(data);
-      this.eraService.suggestData(this.suggestDatas).subscribe(
+      this.eraService.suggestEraData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );

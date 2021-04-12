@@ -32,6 +32,7 @@ import { DataTableCardComponent } from './widgets/data-table-card/data-table-car
 import { DataTableCardCurrencyComponent } from './widgets/data-table-card-currency/data-table-card-currency.component';
 import { PaginatorComponent } from './widgets/paginator/paginator.component';
 import { SortListComponent } from './widgets/sort-list/sort-list.component';
+import { ModifyCurrencyComponent } from './widgets/modify-currency/modify-currency.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SortListComponent } from './widgets/sort-list/sort-list.component';
     DataTableCardCurrencyComponent,
     PaginatorComponent,
     SortListComponent,
+    ModifyCurrencyComponent,
   ],
     imports: [
         BrowserModule,

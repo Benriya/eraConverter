@@ -1,6 +1,5 @@
 <div>
-  <app-sort-list [filteredPostsList]="filteredPostsList" [eraDatas]="eraDatas" (listRecord)="setListRecord($event)" (filteredPost)="setSearch($event)"></app-sort-list>
-  <!--<app-paginator [listRecordNumber]="listRecord" [filteredPostsList]="filteredPostsList" (pageEmit)="setPage($event)"></app-paginator>-->
+  <app-sort-list [filteredPostsList]="filteredPostsList" [eraDatas]="eraDatas" [searchType]="false" (listRecord)="setListRecord($event)" (filteredPost)="setSearch($event)"></app-sort-list>
   <div class="error" *ngIf="eraDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>

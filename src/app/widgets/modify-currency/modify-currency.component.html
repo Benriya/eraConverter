@@ -1,0 +1,32 @@
+<div>
+  <mat-card>
+    <mat-card-content>
+      <div class="listText">
+        <mat-card-title class="listText__piece-name">#{{currencyData.id}}</mat-card-title>
+        <div class="listText__piece"><strong>Miből: </strong>
+          <mat-form-field appearance="legacy">
+            <label>
+              <input matInput [(ngModel)]="currencyData.currencyOne">
+            </label>
+          </mat-form-field>
+        </div>
+        <div class="listText__piece"><strong>Mibe: </strong>
+          <mat-form-field appearance="legacy">
+            <label>
+              <input matInput [(ngModel)]="currencyData.currencyTwo">
+            </label>
+          </mat-form-field>
+        </div>
+        <div class="listText__piece"><strong>Szorzó: </strong>
+          <mat-form-field appearance="legacy">
+            <label>
+              <input matInput [(ngModel)]="currencyData.rate">
+            </label>
+          </mat-form-field>
+        </div>
+      </div>
+      <div><button class="submitButton" (click)="updateData()">Rekord Frissítése</button></div>
+      <div><button class="submitButton" (click)="returnFrontPage()">Mégse</button></div>
+    </mat-card-content>
+  </mat-card>
+</div>

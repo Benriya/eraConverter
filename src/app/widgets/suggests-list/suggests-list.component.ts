@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {EraServiceService} from "../../services/era-service.service";
 import {AuthService} from "../../services/auth.service";
-import {map} from "rxjs/operators";
 import {eraData} from "../../models/eraData.model";
+import {GlobalService} from "../../services/global.service";
+import {currencyData} from "../../models/currencyData.model";
 
 @Component({
   selector: 'app-suggests-list',
@@ -10,53 +11,46 @@ import {eraData} from "../../models/eraData.model";
   styleUrls: ['./suggests-list.component.scss']
 })
 export class SuggestsListComponent implements OnInit {
-  suggestDatas = [];
+  suggestEraDatas = [];
   eraDatas = [];
-  listRecord = 50;
+  suggestCurrDatas = [];
+  currencyDatas = [];
+  listRecordEra = 50;
+  listRecordCurr = 50;
   visible: boolean;
-  page = 1;
-  filteredPostsList;
+  pageEra = 1;
+  pageCurr = 1;
+  filteredPostsListEra;
+  filteredPostsListCurr
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
-    this.eraService.getSuggestedData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.suggestDatas.push(data[key]);
-        }
-      }
-      return this.suggestDatas;
-    })).subscribe();
-
-    this.eraService.getEraData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.eraDatas.push(data[key]);
-        }
-      }
-      return this.eraDatas;
-    })).subscribe();
+  constructor(private eraService: EraServiceService, private authService: AuthService, private global: GlobalService) {
+    this.global.getSuggestedEraData(this.suggestEraDatas);
+    this.global.getEraData(this.eraDatas);
+    this.global.getCurrencyData(this.currencyDatas);
+    this.global.getSuggestedCurrData(this.suggestCurrDatas);
   }
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.visible = true;
     }
-    this.filteredPostsList = this.suggestDatas;
+    this.filteredPostsListEra = this.suggestEraDatas;
+    this.filteredPostsListCurr = this.suggestCurrDatas;
   }
 
-  deleteData(deleteData): void {
+  deleteEraData(deleteData): void {
     if (this.authService.isAuthenticated()) {
-      const index = this.suggestDatas.indexOf(deleteData, 0);
-      this.suggestDatas.splice(index, 1);
-      this.eraService.suggestData(this.suggestDatas).subscribe(
+      const index = this.suggestEraDatas.indexOf(deleteData, 0);
+      this.suggestEraDatas.splice(index, 1);
+      this.eraService.suggestEraData(this.suggestEraDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
     }
   }
 
-  postData(data: eraData): void {
-    this.deleteData(data);
+  postEraData(data: eraData): void {
+    this.deleteEraData(data);
     this.eraDatas.push(data);
     this.eraService.postEraData(this.eraDatas).subscribe(
       (response) => console.log(response),
@@ -64,16 +58,48 @@ export class SuggestsListComponent implements OnInit {
     );
   }
 
-  setPage(page) {
-    this.page = page;
+  deleteCurrData(deleteData): void {
+    if (this.authService.isAuthenticated()) {
+      const index = this.suggestCurrDatas.indexOf(deleteData, 0);
+      this.suggestCurrDatas.splice(index, 1);
+      this.eraService.suggestCurrencyData(this.suggestCurrDatas).subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+    }
   }
 
-  setListRecord(listRecord) {
-    this.listRecord = listRecord;
+  postCurrData(data: currencyData): void {
+    this.deleteCurrData(data);
+    this.currencyDatas.push(data);
+    this.eraService.postCurrencyData(this.currencyDatas).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
 
-  setSearch(datas) {
-    this.filteredPostsList = datas;
+  setPageEra(page) {
+    this.pageEra = page;
+  }
+
+  setListRecordEra(listRecord) {
+    this.listRecordEra = listRecord;
+  }
+
+  setSearchEra(datas) {
+    this.filteredPostsListEra = datas;
+  }
+
+  setPageCurr(page) {
+    this.pageCurr = page;
+  }
+
+  setListRecordCurr(listRecord) {
+    this.listRecordCurr = listRecord;
+  }
+
+  setSearchCurr(datas) {
+    this.filteredPostsListCurr = datas;
   }
 
 }

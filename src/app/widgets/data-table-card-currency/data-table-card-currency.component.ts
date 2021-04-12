@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {currencyData} from "../../models/currencyData.model";
+import {eraData} from "../../models/eraData.model";
 
 @Component({
   selector: 'app-data-table-card-currency',
@@ -9,7 +10,9 @@ import {currencyData} from "../../models/currencyData.model";
 export class DataTableCardCurrencyComponent implements OnInit {
   @Input() dataset: currencyData;
   @Input() visible;
+  @Input() suggest: boolean;
   @Output() eraDatasEmitter = new EventEmitter<currencyData>();
+  @Output() postDataset = new EventEmitter<currencyData>();
 
   constructor() { }
 
@@ -18,6 +21,10 @@ export class DataTableCardCurrencyComponent implements OnInit {
 
   deleteData() {
     this.eraDatasEmitter.emit(this.dataset);
+  }
+
+  postData() {
+    this.postDataset.emit(this.dataset);
   }
 
 }

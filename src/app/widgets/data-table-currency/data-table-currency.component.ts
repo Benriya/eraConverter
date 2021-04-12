@@ -17,8 +17,8 @@ export class DataTableCurrencyComponent implements OnInit {
   visible = false;
   filteredPostsList;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService) {
-    this.getCurrencyDatas();
+  constructor(private eraService: EraServiceService, private authService: AuthService, private global: GlobalService) {
+    this.global.getCurrencyData(this.currencyDatas);
   }
 
   ngOnInit(): void {
@@ -38,17 +38,6 @@ export class DataTableCurrencyComponent implements OnInit {
         (error) => console.log(error)
       );
     }
-  }
-
-  getCurrencyDatas() {
-    this.eraService.getCurrencyData().pipe(map((data: any) => {
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.currencyDatas.push(data[key]);
-        }
-      }
-      return this.currencyDatas;
-    })).subscribe();
   }
 
   setPage(page) {
