@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {ResponsiveService} from "./services/responsive.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, DoCheck{
   dataTypeEra: boolean;
   href: string;
 
-  constructor(private responsiveService: ResponsiveService, private router: Router){
+  constructor(private route: ActivatedRoute, private responsiveService: ResponsiveService, private router: Router){
   }
 
   ngOnInit(): void {

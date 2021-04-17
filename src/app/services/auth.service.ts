@@ -69,7 +69,6 @@ export class AuthService {
   createSession(authData: AuthData) {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(() => {
-        console.log('hi');
         return this.signIn(authData);
       });
   }

@@ -31,7 +31,7 @@ export class AddCurrencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.admin = this.authService.admin;
+    this.admin = this.authService.isAuthenticated();
     this.globalService.checkIfMobile(this.selector, this.textLine);
   }
 

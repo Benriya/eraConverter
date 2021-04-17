@@ -39,6 +39,6 @@ export class ModifyComponent implements OnInit {
   }
 
   returnFrontPage(): void {
-    this.router.navigate([''], { relativeTo: this.route });
+    this.router.navigate(['/home'], { relativeTo: this.route });
   }
 }
