@@ -7,6 +7,14 @@
     "eraDataSuggests": {
       ".read": true,
       ".write": true
-    }
+    },
+    "currencyDatas": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "currencyDataSuggests": {
+      ".read": true,
+      ".write": true
+    },
   }
 }

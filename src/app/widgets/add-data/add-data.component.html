@@ -25,8 +25,14 @@
     </div>
     <div class="createRecord__quartile" [ngClass]="missingInputQuartile">
       <strong>Kvartilis: </strong>
-      <mat-form-field appearance="legacy" class="createRecord__quartile-line" [ngClass]="textLine">
-          <input matInput [(ngModel)]="quartile">
+      <mat-form-field appearance="legacy" class="createRecord__quartile" [ngClass]="textLine">
+        <mat-label>{{quartile}}</mat-label>
+        <mat-select>
+          <mat-option (click)="setQuartile('first')">First</mat-option>
+          <mat-option (click)="setQuartile('second')">Scond</mat-option>
+          <mat-option (click)="setQuartile('third')">Third</mat-option>
+          <mat-option (click)="setQuartile('fourth')">Fourth</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="createRecord__possessions">

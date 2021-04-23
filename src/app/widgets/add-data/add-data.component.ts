@@ -1,9 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {eraData} from '../../models/eraData.model';
-import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
-import {ResponsiveService} from "../../services/responsive.service";
 import {GlobalService} from "../../services/global.service";
 
 @Component({
@@ -26,12 +24,13 @@ export class AddDataComponent implements OnInit {
   cost = '';
   description = '';
   source = '';
-  quartile = '';
+  quartile = 'first';
   missingInputAge = '';
   missingInputName = '';
   missingInputQuartile = '';
   textLine: string;
   selector: string;
+  upload: string;
 
   constructor(private eraService: EraServiceService, private authService: AuthService, private globalService: GlobalService) {
     this.globalService.getEraData(this.eraDatas);
@@ -50,6 +49,7 @@ export class AddDataComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+      this.setDefault();
     }else {
       this.noInputError();
     }
@@ -62,9 +62,23 @@ export class AddDataComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+      this.setDefault();
     }else {
       this.noInputError();
     }
+  }
+
+  setDefault() {
+    this.eraNames = 'Név';
+    this.singleTime = '';
+    this.name = '';
+    this.age = '';
+    this.possessions = '';
+    this.income = '';
+    this.cost = '';
+    this.description = '';
+    this.source = '';
+    this.quartile = 'first';
   }
 
   generateId(): number {
@@ -76,6 +90,9 @@ export class AddDataComponent implements OnInit {
   }
   setSingleTime(selected: string): void {
     this.singleTime = selected;
+  }
+  setQuartile(selected: string): void {
+    this.quartile = selected;
   }
 
   noInputError(): void {

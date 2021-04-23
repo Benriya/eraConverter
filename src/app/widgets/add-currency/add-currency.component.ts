@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {EraServiceService} from "../../services/era-service.service";
 import {AuthService} from "../../services/auth.service";
 import {ResponsiveService} from "../../services/responsive.service";
-import {map} from "rxjs/operators";
 import {GlobalService} from "../../services/global.service";
 import {currencyData} from "../../models/currencyData.model";
 
@@ -15,7 +14,6 @@ export class AddCurrencyComponent implements OnInit {
   admin = false;
   currencyDatas = [];
   suggestDatas = [];
-  singleTime = '';
   currencyOne = '';
   currencyTwo = '';
   rate: number;
@@ -46,6 +44,7 @@ export class AddCurrencyComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+      this.setDefault();
     }else {
       this.noInputError();
     }
@@ -58,6 +57,7 @@ export class AddCurrencyComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error)
       );
+      this.setDefault();
     }else {
       this.noInputError();
     }
@@ -77,6 +77,9 @@ export class AddCurrencyComponent implements OnInit {
     }
   }
 
-
-
+  setDefault() {
+    this.currencyOne = '';
+    this.currencyTwo = '';
+    this.rate = 0;
+  }
 }
