@@ -37,7 +37,7 @@ export class AuthService {
       .then(response => {
         if (response.user.emailVerified !== true) {
           this.SendVerificationMail();
-          window.alert('Please validate your email address. Kindly check your inbox.');
+          window.alert('Kérlek hitelesítsd az email címedet!');
         } else {
           this.uid = response.user.uid;
 
@@ -62,6 +62,7 @@ export class AuthService {
     if (firebase.auth().currentUser != null) {
       if (firebase.auth().currentUser.uid === 'zzE012cY20crwe0VulbjEFnVFAE3' || firebase.auth().currentUser.uid === '1flFItcqi0W5p7YD7GqJh0J5KOz2') {
         this.admin = true;
+        return true;
       }
     }
   }

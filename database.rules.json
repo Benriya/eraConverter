@@ -2,19 +2,19 @@
   "rules": {
     "eraDatas": {
       ".read": true,
-      ".write": "auth != null"
+      ".write": "auth.uid == '1flFItcqi0W5p7YD7GqJh0J5KOz2'"
     },
     "eraDataSuggests": {
       ".read": true,
-      ".write": true
+      ".write": "auth != null"
     },
     "currencyDatas": {
       ".read": true,
-      ".write": "auth != null"
+      ".write": "auth.uid == '1flFItcqi0W5p7YD7GqJh0J5KOz2'"
     },
     "currencyDataSuggests": {
       ".read": true,
-      ".write": true
-    },
+      ".write": "auth != null"
+    }
   }
 }

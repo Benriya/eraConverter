@@ -12,7 +12,8 @@
         <button class="login__navigation-item-button" [ngClass]="onMobileButton" (click)="logout()" routerLink="/home">Kilépés</button>
       </li>
       <li  *ngIf="authService.isAuthenticated() && admin" [ngClass]="onMobile" class="login__navigation-item">
-        <button class="login__navigation-item-button" [ngClass]="onMobileButton" routerLink="/suggests">Ajánlatok</button>
+        <button class="login__navigation-item-button" *ngIf="href.includes('/home')" [ngClass]="onMobileButton" routerLink="/suggests">Ajánlatok</button>
+        <button class="login__navigation-item-button" *ngIf="href.includes('/suggests')" [ngClass]="onMobileButton" routerLink="/home">Főoldal</button>
       </li>
       <li [ngClass]="onMobile" *ngIf="href.includes('/home')" class="login__navigation-item" (click)="changeView()">
         <button class="login__navigation-item-button" *ngIf="eraDatas" [ngClass]="onMobileButton">Korszakváltó</button>

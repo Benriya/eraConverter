@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, DoCheck{
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
       if(isMobile){
         this.mobile = true;
+        console.log('Mobile detected')
       }
       else{
         console.log('Desktop detected')

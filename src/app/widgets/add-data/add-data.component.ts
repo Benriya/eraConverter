@@ -1,8 +1,9 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, DoCheck, Injectable, OnInit} from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {eraData} from '../../models/eraData.model';
 import {AuthService} from "../../services/auth.service";
 import {GlobalService} from "../../services/global.service";
+import {ResponsiveService} from "../../services/responsive.service";
 
 @Component({
   selector: 'app-add-data',
@@ -11,7 +12,7 @@ import {GlobalService} from "../../services/global.service";
   styleUrls: ['./add-data.component.scss']
 })
 @Injectable({providedIn: 'root'})
-export class AddDataComponent implements OnInit {
+export class AddDataComponent implements OnInit, DoCheck {
   admin = false;
   eraDatas = [];
   suggestDatas = [];
@@ -32,14 +33,18 @@ export class AddDataComponent implements OnInit {
   selector: string;
   upload: string;
 
-  constructor(private eraService: EraServiceService, private authService: AuthService, private globalService: GlobalService) {
+  constructor(private responsiveService: ResponsiveService, private eraService: EraServiceService, private authService: AuthService, private globalService: GlobalService) {
     this.globalService.getEraData(this.eraDatas);
     this.globalService.getSuggestedEraData(this.suggestDatas);
   }
 
   ngOnInit(): void {
-    this.admin = this.authService.isAuthenticated();
-    this.globalService.checkIfMobile(this.selector, this.textLine);
+    this.admin = this.authService.checkIfAdmin();
+    this.checkIfMobile();
+  }
+
+  ngDoCheck(): void {
+
   }
 
   postData(data: eraData): void {
@@ -107,6 +112,24 @@ export class AddDataComponent implements OnInit {
       if (this.quartile === '') {
         this.missingInputQuartile = 'missingInput';
       }
+  }
+
+  checkIfMobile() {
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.selector = 'mobileSelector';
+        this.textLine = 'mobileTextLine';
+      }
+      else{
+        this.selector = '';
+        this.textLine = '';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 
 }

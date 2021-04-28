@@ -17,7 +17,7 @@ export class SuggestsListComponent implements OnInit {
   currencyDatas = [];
   listRecordEra = 50;
   listRecordCurr = 50;
-  visible: boolean;
+  visible = false;
   pageEra = 1;
   pageCurr = 1;
   filteredPostsListEra;
@@ -31,15 +31,13 @@ export class SuggestsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
-      this.visible = true;
-    }
+    if (this.authService.checkIfAdmin()) this.visible = true;
     this.filteredPostsListEra = this.suggestEraDatas;
     this.filteredPostsListCurr = this.suggestCurrDatas;
   }
 
   deleteEraData(deleteData): void {
-    if (this.authService.isAuthenticated()) {
+    if (this.visible) {
       const index = this.suggestEraDatas.indexOf(deleteData, 0);
       this.suggestEraDatas.splice(index, 1);
       this.eraService.suggestEraData(this.suggestEraDatas).subscribe(
@@ -59,7 +57,7 @@ export class SuggestsListComponent implements OnInit {
   }
 
   deleteCurrData(deleteData): void {
-    if (this.authService.isAuthenticated()) {
+    if (this.visible) {
       const index = this.suggestCurrDatas.indexOf(deleteData, 0);
       this.suggestCurrDatas.splice(index, 1);
       this.eraService.suggestCurrencyData(this.suggestCurrDatas).subscribe(

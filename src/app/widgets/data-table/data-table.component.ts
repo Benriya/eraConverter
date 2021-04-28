@@ -1,7 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import {EraServiceService} from '../../services/era-service.service';
 import {AuthService} from '../../services/auth.service';
-import {map} from 'rxjs/operators';
 import {GlobalService} from "../../services/global.service";
 
 @Component({
@@ -26,11 +25,11 @@ export class DataTableComponent implements DoCheck, OnInit {
   }
 
   ngDoCheck(): void {
-    this.visible = this.authService.admin;
+    if (this.authService.checkIfAdmin()) this.visible = true;
   }
 
   deleteData(deleteData): void {
-    if (this.authService.isAuthenticated()) {
+    if (this.visible) {
       const index = this.eraDatas.indexOf(deleteData, 0);
       this.eraDatas.splice(index, 1);
       this.eraService.postEraData(this.eraDatas).subscribe(

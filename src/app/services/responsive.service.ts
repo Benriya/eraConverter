@@ -6,7 +6,6 @@ export class ResponsiveService {
   private isMobile = new Subject();
   public screenWidth: string;
 
-
   constructor() {
     this.checkWidth();
   }

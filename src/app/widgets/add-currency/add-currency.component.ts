@@ -29,7 +29,7 @@ export class AddCurrencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.admin = this.authService.isAuthenticated();
+    this.admin = this.authService.checkIfAdmin();
     this.globalService.checkIfMobile(this.selector, this.textLine);
   }
 
