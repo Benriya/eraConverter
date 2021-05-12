@@ -1,3 +1,5 @@
+ @import "src/global";
+
 div {
   position: relative;
   display: block;
@@ -5,7 +7,7 @@ div {
 
 .addData {
   overflow: hidden;
-  height: 30em;
+  height: 10 * $globalMargin;
 }
 
 .mobileView {

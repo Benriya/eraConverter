@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import {EraServiceService} from '../../services/era-service.service';
-import {AuthService} from '../../services/auth.service';
-import {GlobalService} from "../../services/global.service";
+import { EraServiceService } from '../../services/era-service.service';
+import { AuthService } from '../../services/auth.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-data-table',

@@ -1,10 +1,21 @@
+$globalMargin: 3em;
+
 .submitButton {
   height: 2em;
   width: 7em;
-  border-radius: 5px;
+  border-radius: 0.3em;
   border: none;
   box-shadow: 0.3em 0.3em #a5a5a5;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+.errorText {
+  color: red;
+}
+
+.missingInput {
+  border: 0.0625em solid red;
+  border-radius: 1.5625em;
 }

@@ -30,7 +30,7 @@ export class AddCurrencyComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin = this.authService.checkIfAdmin();
-    this.globalService.checkIfMobile(this.selector, this.textLine);
+    this.checkIfMobile();
   }
 
   generateId(): number {
@@ -81,5 +81,23 @@ export class AddCurrencyComponent implements OnInit {
     this.currencyOne = '';
     this.currencyTwo = '';
     this.rate = 0;
+  }
+
+  checkIfMobile() {
+    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+      if(isMobile){
+        this.selector = 'mobileSelector';
+        this.textLine = 'mobileTextLine';
+      }
+      else{
+        this.selector = '';
+        this.textLine = '';
+      }
+    });
+    this.onResize();
+  }
+
+  onResize(){
+    this.responsiveService.checkWidth();
   }
 }

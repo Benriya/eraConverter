@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {EraServiceService} from "../../services/era-service.service";
-import {GlobalService} from "../../services/global.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EraServiceService } from '../../services/era-service.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-modify-currency',

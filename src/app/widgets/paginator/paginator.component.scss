@@ -1,5 +1,7 @@
+@import "src/global";
+
 .paginator {
-  margin-left: 3em;
+  margin-left: $globalMargin;
   position: relative;
   display: inline-block;
 }

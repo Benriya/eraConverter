@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {eraData} from "../../models/eraData.model";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { eraData } from '../../models/eraData.model';
 
 @Component({
   selector: 'app-data-table-card',

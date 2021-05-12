@@ -1,10 +1,12 @@
+@import "src/global";
+
 .sort {
   &__numberOfRecords {
-    margin-left: 3em;
+    margin-left: $globalMargin;
   }
 
   &__search {
     width: auto;
-    margin-left: 3em;
+    margin-left: $globalMargin;
   }
 }

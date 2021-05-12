@@ -24,9 +24,9 @@
       height: 3em;
       width: 8em;
       display: inline-block;
-      box-shadow: 2px 2px whitesmoke;
-      border-radius: 10px;
-      padding: 5px;
+      box-shadow: 0.25em 0.25em whitesmoke;
+      border-radius: 0.625em;
+      padding: 0.3125em;
       margin-right: 5em;
       cursor: pointer;
       float: left;
@@ -34,7 +34,7 @@
       &-button {
         height: 2.3em;
         width: 7.3em;
-        border-radius: 5px;
+        border-radius: 0.3125em;
         border: none;
         text-align: center;
         text-decoration: none;
@@ -45,18 +45,18 @@
 
 .mobileNavigation {
   width: 27em;
-  left: 6.8em;
+  left: 5em;
 }
 .onMobile {
   height: 2.5em;
-  width: 5.3em;
+  width: 5.8em;
   margin-right: 0;
   &__button {
     height: 2.5em;
     width: 6.5em;
-    font-size: 10px;
+    font-size: 0.8em;
   }
   &__title {
-    font-size: 20px;
+    font-size: 1.1em;
   }
 }

@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {currencyData} from "../../models/currencyData.model";
-import {eraData} from "../../models/eraData.model";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { currencyData } from '../../models/currencyData.model';
 
 @Component({
   selector: 'app-data-table-card-currency',
@@ -9,7 +8,7 @@ import {eraData} from "../../models/eraData.model";
 })
 export class DataTableCardCurrencyComponent implements OnInit {
   @Input() dataset: currencyData;
-  @Input() visible;
+  @Input() visible: boolean;
   @Input() suggest: boolean;
   @Output() eraDatasEmitter = new EventEmitter<currencyData>();
   @Output() postDataset = new EventEmitter<currencyData>();

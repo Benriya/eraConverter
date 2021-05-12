@@ -2,8 +2,8 @@ import {Component, DoCheck, OnInit} from '@angular/core';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
-import {ResponsiveService} from "./services/responsive.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ResponsiveService} from './services/responsive.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',

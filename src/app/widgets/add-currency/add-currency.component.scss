@@ -1,19 +1,16 @@
 @import "src/global";
-
-.title {
-  margin-left: 3em;
-}
+@import "src/app/widgets/add-data/add-data.component";
 
 .createRecord {
   position: relative;
-  left: 3em;
+  left: $globalMargin;
 
   &__currencyOne {
     display: inline-block;
     margin-right: 1em;
 
     &-type {
-      width: 12em;
+      width: 4 * $globalMargin;
     }
 
     &-line {
@@ -38,32 +35,4 @@
       width: 20em;
     }
   }
-}
-
-.submitButton {
-  width: 10em;
-  height: 3em;
-  margin-left: 3em;
-}
-
-.uploadRecord {
-  display: block;
-  height: 20em;
-}
-
-.errorText {
-  color: red;
-}
-
-.missingInput {
-  border: 1px solid red;
-  border-radius: 25px;
-}
-
-.mobileTextLine {
-  width: 13em;
-}
-
-.mobileSelector {
-  width: 6em;
 }

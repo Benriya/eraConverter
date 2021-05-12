@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {ResponsiveService} from "../../services/responsive.service";
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { ResponsiveService} from '../../services/responsive.service';
 
 @Component({
   selector: 'app-password-reset',

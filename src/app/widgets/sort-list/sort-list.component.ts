@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GlobalService} from "../../services/global.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-sort-list',
@@ -7,8 +7,8 @@ import {GlobalService} from "../../services/global.service";
   styleUrls: ['./sort-list.component.scss']
 })
 export class SortListComponent implements OnInit {
-  @Input() filteredPostsList;
-  @Input() eraDatas;
+  @Input() filteredPostsList: any[];
+  @Input() eraDatas: any[];
   @Input() searchType: boolean;
   @Output() listRecord = new EventEmitter<number>();
   @Output() filteredPost = new EventEmitter<any>();
@@ -19,8 +19,6 @@ export class SortListComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchOption = '';
-    console.log(this.eraDatas);
-    console.log(this.filteredPostsList);
   }
 
   setListRecordNumber(selected: number): void {

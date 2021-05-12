@@ -1,9 +1,9 @@
-import {Component, DoCheck, Injectable, OnInit} from '@angular/core';
-import {EraServiceService} from '../../services/era-service.service';
-import {eraData} from '../../models/eraData.model';
-import {AuthService} from "../../services/auth.service";
-import {GlobalService} from "../../services/global.service";
-import {ResponsiveService} from "../../services/responsive.service";
+import { Component, DoCheck, Injectable, OnInit } from '@angular/core';
+import { EraServiceService } from '../../services/era-service.service';
+import { eraData } from '../../models/eraData.model';
+import { AuthService } from '../../services/auth.service';
+import { GlobalService } from '../../services/global.service';
+import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
   selector: 'app-add-data',
@@ -29,6 +29,7 @@ export class AddDataComponent implements OnInit, DoCheck {
   missingInputAge = '';
   missingInputName = '';
   missingInputQuartile = '';
+  noValueGiven = '';
   textLine: string;
   selector: string;
   upload: string;
@@ -48,7 +49,7 @@ export class AddDataComponent implements OnInit, DoCheck {
   }
 
   postData(data: eraData): void {
-    if (this.name !== '' && this.age !== '') {
+    if (this.name !== '' && this.age !== '' && this.validateIncome()) {
       this.eraDatas.push(data);
       this.eraService.postEraData(this.eraDatas).subscribe(
         (response) => console.log(response),
@@ -61,7 +62,7 @@ export class AddDataComponent implements OnInit, DoCheck {
   }
 
   suggestData(data: eraData): void {
-    if (this.name !== '' && this.age !== '') {
+    if (this.name !== '' && this.age !== '' && this.validateIncome()) {
       this.suggestDatas.push(data);
       this.eraService.suggestEraData(this.suggestDatas).subscribe(
         (response) => console.log(response),
@@ -71,6 +72,12 @@ export class AddDataComponent implements OnInit, DoCheck {
     }else {
       this.noInputError();
     }
+  }
+
+  validateIncome() {
+    const value = this.income.split(' ');
+    console.log(value);
+    return !isNaN(+value[0]);
   }
 
   setDefault() {
@@ -111,6 +118,10 @@ export class AddDataComponent implements OnInit, DoCheck {
 
       if (this.quartile === '') {
         this.missingInputQuartile = 'missingInput';
+      }
+
+      if (!this.validateIncome()) {
+        this.noValueGiven = 'missingInput';
       }
   }
 

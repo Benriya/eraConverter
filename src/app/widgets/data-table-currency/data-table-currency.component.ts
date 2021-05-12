@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {EraServiceService} from "../../services/era-service.service";
-import {AuthService} from "../../services/auth.service";
-import {ResponsiveService} from "../../services/responsive.service";
-import {GlobalService} from "../../services/global.service";
-import {map} from "rxjs/operators";
+import {Component, DoCheck, OnInit} from '@angular/core';
+import { EraServiceService } from '../../services/era-service.service';
+import { AuthService } from '../../services/auth.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-data-table-currency',
   templateUrl: './data-table-currency.component.html',
   styleUrls: ['./data-table-currency.component.scss']
 })
-export class DataTableCurrencyComponent implements OnInit {
+export class DataTableCurrencyComponent implements OnInit, DoCheck {
   currencyDatas = [];
   listRecord = 50;
   page = 1;
@@ -26,7 +24,7 @@ export class DataTableCurrencyComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    this.visible = this.authService.admin;
+    if (this.authService.checkIfAdmin()) this.visible = true;
   }
 
   deleteData(deleteData): void {

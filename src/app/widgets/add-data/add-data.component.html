@@ -41,7 +41,8 @@
           <input matInput [(ngModel)]="possessions">
       </mat-form-field>
     </div>
-    <div class="createRecord__income">
+    <div class="createRecord__income" [ngClass]="noValueGiven">
+      <p *ngIf="noValueGiven==='missingInput'">(Összeg + pénznem vagy egyéb megfelelő kiírása)</p>
     <strong>Jövedelem: </strong>
       <mat-form-field appearance="legacy" class="createRecord__income-line" [ngClass]="textLine">
           <input matInput [(ngModel)]="income">

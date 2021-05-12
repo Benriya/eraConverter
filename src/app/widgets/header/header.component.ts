@@ -1,9 +1,7 @@
-import {Component, DoCheck, Input, OnInit, Output} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
-import {ResponsiveService} from "../../services/responsive.service";
+import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { ResponsiveService } from '../../services/responsive.service';
 import { EventEmitter } from '@angular/core';
-import {Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-header',
@@ -12,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit, DoCheck {
   @Output() eraDatasEmitter = new EventEmitter<boolean>();
-  @Input() href;
+  @Input() href: string;
   title = 'EraConverter';
   isLoggedIn: boolean;
   admin = false;
@@ -22,7 +20,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   eraDatas = true;
   onMobileTitle: string;
 
-  constructor(public authService: AuthService, private responsiveService: ResponsiveService, private router: Router) { }
+  constructor(public authService: AuthService, private responsiveService: ResponsiveService) { }
 
   ngOnInit(): void {
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
@@ -51,7 +49,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    this.admin = this.authService.admin;
+    this.admin = this.authService.checkIfAdmin();
   }
 
   changeView() {

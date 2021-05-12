@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from './auth.service';
-import {eraData} from "../models/eraData.model";
 
 @Injectable({
   providedIn: 'root'

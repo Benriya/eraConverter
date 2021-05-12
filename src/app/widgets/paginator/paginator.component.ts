@@ -1,5 +1,5 @@
-import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ResponsiveService} from "../../services/responsive.service";
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
   selector: 'app-paginator',
@@ -7,8 +7,8 @@ import {ResponsiveService} from "../../services/responsive.service";
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, DoCheck {
-  @Input() filteredPostsList;
-  @Input() listRecordNumber;
+  @Input() filteredPostsList: any[];
+  @Input() listRecordNumber: number;
   @Output() pageEmit = new EventEmitter<number>();
   page: number;
   pages = [];
@@ -61,7 +61,6 @@ export class PaginatorComponent implements OnInit, DoCheck {
   setPaginator(): void {
     this.pages = [];
     this.listSize = Math.ceil(this.filteredPostsList.length / this.listRecordNumber);
-    // console.log(this.listSize);
     for (let i = 0; i < this.listSize; i++) {
       this.pages.push(i + 1);
     }

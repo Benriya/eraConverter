@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
-import {ResponsiveService} from "../../services/responsive.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
   selector: 'app-front-page',
@@ -8,7 +8,7 @@ import {ResponsiveService} from "../../services/responsive.service";
   styleUrls: ['./front-page.component.scss']
 })
 export class FrontPageComponent implements OnInit {
-  @Input() eraDatas;
+  @Input() eraDatas: boolean;
   onMobile: string;
 
   constructor(public authService: AuthService, private responsiveService: ResponsiveService) { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
-import {NgForm} from '@angular/forms';
-import {ResponsiveService} from "../../services/responsive.service";
+import { AuthService } from '../../services/auth.service';
+import { NgForm } from '@angular/forms';
+import { ResponsiveService } from '../../services/responsive.service';
 
 @Component({
   selector: 'app-login',

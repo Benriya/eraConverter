@@ -1,13 +1,12 @@
-import {Injectable} from "@angular/core";
-import {ResponsiveService} from "./responsive.service";
-import {map} from "rxjs/operators";
-import {EraServiceService} from "./era-service.service";
-import {AuthService} from "./auth.service";
+import { Injectable } from '@angular/core';
+import { ResponsiveService } from './responsive.service';
+import { map } from 'rxjs/operators';
+import { EraServiceService } from './era-service.service';
 
 @Injectable({providedIn: 'root'})
 export class GlobalService {
 
-  constructor(private responsiveService: ResponsiveService, private eraService: EraServiceService, private authService: AuthService) {}
+  constructor(private responsiveService: ResponsiveService, private eraService: EraServiceService) {}
 
 
   filteredListOptionsEra(filteredPostsList, searchOption, eraDatas): any[] {
@@ -39,24 +38,6 @@ export class GlobalService {
       }
     }
     return filteredPostsList;
-  }
-
-  checkIfMobile(selector, textLine) {
-    this.responsiveService.getMobileStatus().subscribe( isMobile =>{
-      if(isMobile){
-        selector = 'mobileSelector';
-        textLine = 'mobileTextLine';
-      }
-      else{
-        selector = '';
-        textLine = '';
-      }
-    });
-    this.onResize();
-  }
-
-  onResize(){
-    this.responsiveService.checkWidth();
   }
 
   getEraData(eraDatas) {
@@ -109,17 +90,6 @@ export class GlobalService {
         dataArray[i] = modifiedData;
         return dataArray;
       }
-    }
-  }
-
-  deleteData(deleteData, suggestedData): void {
-    if (this.authService.isAuthenticated()) {
-      const index = suggestedData.indexOf(deleteData, 0);
-      suggestedData.splice(index, 1);
-      this.eraService.suggestEraData(suggestedData).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
     }
   }
 }

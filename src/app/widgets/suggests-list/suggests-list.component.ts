@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {EraServiceService} from "../../services/era-service.service";
-import {AuthService} from "../../services/auth.service";
-import {eraData} from "../../models/eraData.model";
-import {GlobalService} from "../../services/global.service";
-import {currencyData} from "../../models/currencyData.model";
+import { EraServiceService } from '../../services/era-service.service';
+import { AuthService } from '../../services/auth.service';
+import { eraData } from '../../models/eraData.model';
+import { GlobalService } from '../../services/global.service';
+import { currencyData } from '../../models/currencyData.model';
 
 @Component({
   selector: 'app-suggests-list',
@@ -21,7 +21,7 @@ export class SuggestsListComponent implements OnInit {
   pageEra = 1;
   pageCurr = 1;
   filteredPostsListEra;
-  filteredPostsListCurr
+  filteredPostsListCurr;
 
   constructor(private eraService: EraServiceService, private authService: AuthService, private global: GlobalService) {
     this.global.getSuggestedEraData(this.suggestEraDatas);
