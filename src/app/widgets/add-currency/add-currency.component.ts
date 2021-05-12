@@ -17,6 +17,7 @@ export class AddCurrencyComponent implements OnInit {
   currencyOne = '';
   currencyTwo = '';
   rate: number;
+  rateTwo: number;
   missingCurrencyOne = '';
   missingCurrencyTwo = '';
   missingInputRate = '';
@@ -38,26 +39,24 @@ export class AddCurrencyComponent implements OnInit {
   }
 
   postData(data: currencyData): void {
-    if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined) {
+    if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined && this.rateTwo != undefined) {
       this.currencyDatas.push(data);
       this.eraService.postCurrencyData(this.currencyDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
-      this.setDefault();
     }else {
       this.noInputError();
     }
   }
 
   suggestData(data: currencyData): void {
-    if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined) {
+    if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined && this.rateTwo != undefined) {
       this.suggestDatas.push(data);
       this.eraService.suggestCurrencyData(this.suggestDatas).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
-      this.setDefault();
     }else {
       this.noInputError();
     }
@@ -72,7 +71,7 @@ export class AddCurrencyComponent implements OnInit {
       this.missingCurrencyTwo = 'missingInput';
     }
 
-    if (this.rate === undefined) {
+    if (this.rate === undefined || this.rateTwo === undefined) {
       this.missingInputRate = 'missingInput';
     }
   }
@@ -81,6 +80,7 @@ export class AddCurrencyComponent implements OnInit {
     this.currencyOne = '';
     this.currencyTwo = '';
     this.rate = 0;
+    this.rateTwo = 0;
   }
 
   checkIfMobile() {
