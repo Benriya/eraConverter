@@ -25,7 +25,7 @@ export class DataTableComponent implements DoCheck, OnInit {
   }
 
   ngDoCheck(): void {
-    if (this.authService.checkIfAdmin()) this.visible = true;
+    this.visible = this.authService.checkIfAdmin();
   }
 
   deleteData(deleteData): void {

@@ -4,8 +4,8 @@ export interface eraData {
   name: string;
   age: string;
   quartile: string;
+  income: string;
   possessions?: string;
-  income?: string;
   singleTime?: string;
   cost?: string;
   description?: string;

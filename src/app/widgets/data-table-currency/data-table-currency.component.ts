@@ -24,7 +24,7 @@ export class DataTableCurrencyComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    if (this.authService.checkIfAdmin()) this.visible = true;
+    this.visible = this.authService.checkIfAdmin();
   }
 
   deleteData(deleteData): void {

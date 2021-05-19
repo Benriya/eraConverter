@@ -27,7 +27,6 @@ export class ModifyCurrencyComponent implements OnInit {
 
   updateData(): void {
     this.global.updateData(this.currencyData, this.currencyDatas);
-    console.log(this.currencyData);
     this.putModifiedData(this.currencyDatas);
     this.returnFrontPage();
   }
