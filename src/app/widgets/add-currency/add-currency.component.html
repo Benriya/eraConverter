@@ -44,14 +44,14 @@
   </div>
   <div class="button">
     <button class="submitButton" *ngIf="admin"  ngbButtonLabel
-            (click)="postData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate});
-             postData({id: generateId(), currencyOne: currencyTwo, currencyTwo: currencyOne, rate: rateTwo});
+            (click)="postData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate},
+             {id: generateId(), currencyOne: currencyTwo, currencyTwo: currencyOne, rate: rateTwo});
               setDefault()">
       Rekord feltöltése
     </button>
     <button class="submitButton" *ngIf="!admin"  ngbButtonLabel
-            (click)="suggestData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate});
-             suggestData({id: generateId(), currencyOne: currencyTwo, currencyTwo: currencyOne, rate: rateTwo});
+            (click)="suggestData({id: generateId(), currencyOne: currencyOne, currencyTwo: currencyTwo, rate: rate},
+             {id: generateId(), currencyOne: currencyTwo, currencyTwo: currencyOne, rate: rateTwo});
               setDefault()">
       Rekord ajánlása
     </button>

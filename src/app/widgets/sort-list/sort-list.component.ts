@@ -27,7 +27,7 @@ export class SortListComponent implements OnInit {
   }
 
   filterOptions() {
-    if (this.searchType) {
+    if (!this.searchType) {
       this.filteredPostsList = this.globalService.filteredListOptionsEra(this.filteredPostsList, this.searchOption, this.eraDatas);
     } else {
       this.filteredPostsList = this.globalService.filteredListOptionsCurrency(this.filteredPostsList, this.searchOption, this.eraDatas);

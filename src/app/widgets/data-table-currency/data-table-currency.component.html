@@ -1,5 +1,5 @@
 <div>
-  <app-sort-list [filteredPostsList]="filteredPostsList" [eraDatas]="currencyDatas" [searchType]="false" (listRecord)="setListRecord($event)" (filteredPost)="setSearch($event)"></app-sort-list>
+  <app-sort-list [filteredPostsList]="filteredPostsList" [eraDatas]="currencyDatas" [searchType]="true" (listRecord)="setListRecord($event)" (filteredPost)="setSearch($event)"></app-sort-list>
   <div class="error" *ngIf="currencyDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>

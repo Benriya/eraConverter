@@ -38,28 +38,46 @@ export class AddCurrencyComponent implements OnInit {
     return Math.round(Math.random() * 10000 + 1000);
   }
 
-  postData(data: currencyData): void {
+  postData(data: currencyData, data2:currencyData): void {
     if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined && this.rateTwo != undefined) {
-      this.currencyDatas.push(data);
-      this.eraService.postCurrencyData(this.currencyDatas).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+      this.pushCurrencyDatas(data);
+      this.pushCurrencyDatas(data2);
+      this.uploadPostData();
     }else {
       this.noInputError();
     }
   }
 
-  suggestData(data: currencyData): void {
+  suggestData(data: currencyData, data2:currencyData): void {
     if (this.currencyTwo !== '' && this.currencyTwo !== '' && this.rate != undefined && this.rateTwo != undefined) {
-      this.suggestDatas.push(data);
-      this.eraService.suggestCurrencyData(this.suggestDatas).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+      this.pushSCurrencyDatas(data);
+      this.pushSCurrencyDatas(data2);
+      this.uploadSuggestData();
     }else {
       this.noInputError();
     }
+  }
+
+  pushSCurrencyDatas(data) {
+    this.suggestDatas.push(data);
+  }
+
+  pushCurrencyDatas(data) {
+    this.currencyDatas.push(data);
+  }
+
+  uploadSuggestData() {
+    this.eraService.suggestCurrencyData(this.suggestDatas).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
+
+  uploadPostData() {
+    this.eraService.postCurrencyData(this.currencyDatas).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
 
   noInputError(): void {

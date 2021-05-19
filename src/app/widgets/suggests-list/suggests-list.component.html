@@ -1,5 +1,5 @@
 <div>
-  <app-sort-list [filteredPostsList]="filteredPostsListEra" [eraDatas]="suggestEraDatas" [searchType]="true" (listRecord)="setListRecordEra($event)" (filteredPost)="setSearchEra($event)"></app-sort-list>
+  <app-sort-list [filteredPostsList]="filteredPostsListEra" [eraDatas]="suggestEraDatas" [searchType]="false" (listRecord)="setListRecordEra($event)" (filteredPost)="setSearchEra($event)"></app-sort-list>
   <div class="error" *ngIf="suggestEraDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>
@@ -13,7 +13,7 @@
   </div>
 </div>
 <div>
-  <app-sort-list [filteredPostsList]="filteredPostsListCurr" [eraDatas]="suggestCurrDatas" [searchType]="false" (listRecord)="setListRecordCurr($event)" (filteredPost)="setSearchCurr($event)"></app-sort-list>
+  <app-sort-list [filteredPostsList]="filteredPostsListCurr" [eraDatas]="suggestCurrDatas" [searchType]="true" (listRecord)="setListRecordCurr($event)" (filteredPost)="setSearchCurr($event)"></app-sort-list>
   <div class="error" *ngIf="suggestCurrDatas.length === 0">
     <h1>Nincs adat</h1>
   </div>
