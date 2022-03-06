@@ -21,17 +21,17 @@ export class AppComponent implements OnInit, DoCheck{
 
   ngOnInit(): void {
     firebase.initializeApp({
-      apiKey: 'AIzaSyAqUSHFm_xyKLRVhrIvlNiFcbR6oUbUtV8',
+      apiKey: process.env.API_KEY,
       authDomain: 'eraconverter-62594.firebaseapp.com'
     });
 
     this.responsiveService.getMobileStatus().subscribe( isMobile =>{
       if(isMobile){
         this.mobile = true;
-        console.log('Mobile detected')
+        console.log('Mobile detected');
       }
       else{
-        console.log('Desktop detected')
+        console.log('Desktop detected');
       }
     });
     this.onResize();

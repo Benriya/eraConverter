@@ -60,7 +60,7 @@ export class AuthService {
 
   checkIfAdmin() {
     if (firebase.auth().currentUser != null) {
-      if (firebase.auth().currentUser.uid === 'zzE012cY20crwe0VulbjEFnVFAE3' || firebase.auth().currentUser.uid === '1flFItcqi0W5p7YD7GqJh0J5KOz2') {
+      if (firebase.auth().currentUser.uid === 'NaN' || firebase.auth().currentUser.uid === 'asd') {
         this.admin = true;
         return true;
       }

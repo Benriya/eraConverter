@@ -2,7 +2,7 @@
   "rules": {
     "eraDatas": {
       ".read": true,
-      ".write": "auth.uid == '1flFItcqi0W5p7YD7GqJh0J5KOz2'"
+      ".write": "auth.uid == 'NaN'"
     },
     "eraDataSuggests": {
       ".read": true,
@@ -10,7 +10,7 @@
     },
     "currencyDatas": {
       ".read": true,
-      ".write": "auth.uid == '1flFItcqi0W5p7YD7GqJh0J5KOz2'"
+      ".write": "auth.uid == 'NaN'"
     },
     "currencyDataSuggests": {
       ".read": true,
